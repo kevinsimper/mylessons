@@ -16,7 +16,7 @@ gulp.task('stylus', function() {
     .pipe(gulp.dest('public/build'));
 });
 
-gulp.task('default', function() {
+gulp.task('default', ['browserify', 'stylus'], function() {
   gulp.watch(['public/**/*.js', '!public/build/**'], ['browserify']);
   gulp.watch(['public/styles/**.styl'], ['stylus']);
 });
