@@ -1,0 +1,19 @@
+{
+  "name": "mylessons",
+  "version": "0.0.1",
+  "description": "Mylessons app",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kevinsimper/mylessons.git"
+  },
+  "author": "Kevin Simper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinsimper/mylessons/issues"
+  },
+  "homepage": "https://github.com/kevinsimper/mylessons"
+}
