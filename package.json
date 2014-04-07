@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "gulp-browserify": "^0.5.0",
-    "gulp-stylus": "^0.1.0"
+    "gulp-stylus": "^0.1.0",
+    "gulp-uglify": "^0.2.1"
   }
 }
