@@ -1,9 +1,12 @@
 var gulp = require('gulp');
 var browserify = require('gulp-browserify');
+var stylus = require('gulp-stylus');
+var uglify = require('gulp-uglify');
 
 gulp.task('browserify', function() {
   gulp.src('public/app.js')
-    .pipe(browserify({debug: true}))
+    .pipe(browserify({debug: true, insertGlobals : true}))
+    .pipe(uglify({outSourceMap: true}))
     .pipe(gulp.dest('public/build'));
 });
 
