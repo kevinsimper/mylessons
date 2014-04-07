@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/kevinsimper/mylessons/issues"
   },
-  "homepage": "https://github.com/kevinsimper/mylessons"
+  "homepage": "https://github.com/kevinsimper/mylessons",
+  "dependencies": {
+    "gulp": "^3.6.0"
+  },
+  "devDependencies": {
+    "gulp-browserify": "^0.5.0",
+    "gulp-stylus": "^0.1.0"
+  }
 }
