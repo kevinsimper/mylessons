@@ -27,3 +27,5 @@ gulp.task('default', ['lint', 'browserify', 'stylus'], function() {
   gulp.watch(['public/**/*.js', '!public/build/**'], ['browserify']);
   gulp.watch(['public/styles/**.styl'], ['stylus']);
 });
+
+gulp.task('build', ['browserify', 'stylus']);
