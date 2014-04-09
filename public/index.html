@@ -7,11 +7,33 @@
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <div class="navbar-brand">mylessons</div>
+        <a href="#/" class="navbar-brand">mylessons</a>
+        <ul class="nav navbar-nav" ng-show="auth.user">
+          <li>
+            <a href="#/lessons" class="navbar-link">Lektioner</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-hide="auth.user">
+          <li>
+            <a href="#" class="navbar-link" ng-click="auth.$login('facebook');">Login</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-show="auth.user">
+          <li class="dropdown">
+            <a class="dropdown-toggle username" data-toggle="dropdown"><img ng-src="http://graph.facebook.com/{{auth.user.thirdPartyUserData.username}}/picture" class="profilepic" alt="">{{auth.user.displayName}} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#/user">Profil</a></li>
+              <li class="divider"></li>
+              <li><a ng-click="auth.$logout()" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </nav>
-    <div ng-view class="container"></div>
 
+    </nav>
+    <div ng-view class="container-fluid" style="padding: 0px"></div>
+
+    <script src="vendor/jquery/jquery-2.1.0.js"></script>
     <script src="build/app.js"></script>
   </body>
 </html>
