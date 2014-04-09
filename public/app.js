@@ -51,6 +51,22 @@ var app = angular.module('app', ['firebase', 'ngRoute', 'routeSecurity'])
     });
  }])
 
+.factory('Lessons', ['$firebase', 'firebaseUrl', 
+  function($firebase, firebaseUrl) {
+    var lessens = $firebase(new Firebase(firebaseUrl + 'lessons'));
+
+    return {
+      all: lessens,
+      choose: function(id){
+        return $firebase(new Firebase(firebaseUrl + 'lessons' + '/' + id));
+      }
+    };
+}])
+
+.factory('User', ['$firebase', 'firebaseUrl', '$rootScope', 
+  function($firebase, firebaseUrl, $rootScope) {
+    return $firebase(new Firebase(firebaseUrl + 'users/' + 'kevin'));
+}])
 
 .controller('DashboardCtrl', ['$scope', '$firebase', 'LoginHandler',
   function($scope, $firebase, LoginHandler){
