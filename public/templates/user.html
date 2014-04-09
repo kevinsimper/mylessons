@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="page-header">
+        <h1>Profil</h1>
+      </div>
+      <div class="alert alert-success" ng-show="submitted">Dine informationer er gemt!</div>
+      <form>
+        <div class="form-group">
+          <label for="name">Navn</label>
+          <input type="text" class="form-control" ng-model="user.name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="name">E-mail</label>
+          <input type="text" class="form-control" ng-model="user.email" name="name">
+        </div>
+        <a class="btn btn-primary" ng-click="submitted = true">Gem</a>
+
+      </form>
+    </div>
+  </div>
+</div>
