@@ -2,15 +2,16 @@
 require('./vendor/jquery/jquery-2.1.0');
 require('./vendor/bootstrap/js/bootstrap.js');
 
+// Core libraries
 require('./vendor/angular/angular');
 require('./vendor/angular/angular-route');
-require('./vendor/angular-route-security/module.routeSecurity');
+// require('./vendor/angular-route-security/module.routeSecurity');
 require('./vendor/firebase/firebase');
-require('./vendor/firebase/simple-login/facebook')
+require('./vendor/firebase/simple-login/facebook');
 require('./vendor/angularfire/angularfire');
 
 
-var app = angular.module('app', ['firebase', 'ngRoute', 'routeSecurity'])
+var app = angular.module('app', ['firebase', 'ngRoute']) // 'routeSecurity'
 .value('firebaseUrl', 'https://mylessons.firebaseio.com/')
 .constant('loginRedirectPath', '/')
 .config(['$routeProvider', function($routeProvider) {
