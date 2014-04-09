@@ -17,26 +17,47 @@ var app = angular.module('app', ['firebase', 'ngRoute']) // 'routeSecurity'
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
-      controller: 'LoginCtrl',
-      templateUrl: 'templates/login.html'
+      controller: 'WelcomeCtrl',
+      templateUrl: 'templates/welcome.html'
     })    
     .when('/dashboard', {
       authRequired: true,
       controller: 'DashboardCtrl',
       templateUrl: 'templates/dashboard.html'
     })
+    .when('/lessons/:lessonid', {
+      authRequired: true,
+      controller: 'LessonCtrl',
+      templateUrl: 'templates/lesson.html'
+    })
+    .when('/lessons/:lessonid/edit', {
+      authRequired: true,
+      controller: 'EditLessonCtrl',
+      templateUrl: 'templates/editlesson.html'
+    })
+    .when('/lessons', {
+      authRequired: true,
+      controller: 'LessonsListCtrl',
+      templateUrl: 'templates/lessons.html'
+    })
+    .when('/user', {
+      authRequired: true,
+      controller: 'UserCtrl',
+      templateUrl: 'templates/user.html'
+    })
     .otherwise({
       redirectTo: '/fail'
-    })
+    });
 }])
 .factory('LoginHandler', 
-  ['$firebaseSimpleLogin', 'firebaseUrl', 
-  function($firebaseSimpleLogin, firebaseUrl){
+  ['$firebaseSimpleLogin', 'firebaseUrl', '$rootScope', 
+  function($firebaseSimpleLogin, firebaseUrl, $rootScope){
     var data = {
       auth: {}
     }
     var ref = new Firebase(firebaseUrl);
     data.auth = $firebaseSimpleLogin(ref);
+    $rootScope.auth = $firebaseSimpleLogin(ref);
 
     return data;
 
@@ -69,19 +90,39 @@ var app = angular.module('app', ['firebase', 'ngRoute']) // 'routeSecurity'
     return $firebase(new Firebase(firebaseUrl + 'users/' + 'kevin'));
 }])
 
-.controller('DashboardCtrl', ['$scope', '$firebase', 'LoginHandler',
-  function($scope, $firebase, LoginHandler){
+.controller('WelcomeCtrl', ['$scope', function($scope){
+
+}])
+
+.controller('DashboardCtrl', ['$scope', '$firebase', 'User',
+  function($scope, $firebase, User){
+    User.$bind($scope, "user");
     $scope.name = 'Kevin';
-    $scope.auth = LoginHandler.auth;
+}])
+
+.controller('UserCtrl', ['$scope', '$firebase', 'User', function($scope, $firebase, User){
+    User.$bind($scope, "user");
 }])
 
 .controller('LoginCtrl', 
-  ['$scope', '$firebase', 'LoginHandler', 
-  function($scope, $firebase, LoginHandler) {
-    $scope.auth = LoginHandler.auth;
+  ['$scope', '$firebase', 
+  function($scope, $firebase) {
 }])
 
-.factory('Lessons', ['$firebase', 'firebaseUrl', 
-  function($firebase, firebaseUrl) {
-    return $firebase(new Firebase(firebaseUrl + 'lessons'));
+.controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', function($scope, $routeParams, Lessons){
+  $scope.id = $routeParams.lessonid;
+  Lessons.choose($scope.id).$bind($scope, 'lesson');
+
 }])
+
+.controller('EditLessonCtrl', ['$scope', '$routeParams', 'Lessons', function($scope, $routeParams, Lessons){
+  $scope.id = $routeParams.lessonid;
+  Lessons.choose($scope.id).$bind($scope, 'lesson');
+
+}])
+
+.controller('LessonsListCtrl', ['$scope', 'Lessons', function($scope, Lessons){
+  Lessons.all.$bind($scope, 'lessons');
+
+}])
+
