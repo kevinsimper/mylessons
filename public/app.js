@@ -1,3 +1,7 @@
+// Frontend libraries
+require('./vendor/jquery/jquery-2.1.0');
+require('./vendor/bootstrap/js/bootstrap.js');
+
 require('./vendor/angular/angular');
 require('./vendor/angular/angular-route');
 require('./vendor/angular-route-security/module.routeSecurity');
