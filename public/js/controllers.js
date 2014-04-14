@@ -23,6 +23,10 @@ var app = require('./modules/app')
   $scope.id = $routeParams.lessonid;
   Lessons.choose($scope.id).$bind($scope, 'lesson');
 
+  $scope.getTemplateUrl = function(type) {
+    return '/templates/media/' + type + '.html';
+  };
+
 }])
 
 .controller('EditLessonCtrl', ['$scope', '$routeParams', 'Lessons', function($scope, $routeParams, Lessons){
