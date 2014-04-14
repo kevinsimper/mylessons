@@ -35,17 +35,29 @@ var app = require('./modules/app')
 
 }])
 
-.controller('NewLessonCtrl', ['$scope', '$routeParams', 'Lessons', function($scope, $routeParams, Lessons){
+.controller('NewLessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', function($scope, $routeParams, Lessons, $location){
   Lessons.all.$bind($scope, 'lessons');
+
 
   $scope.addLesson = function() {
     $scope.lessons[$scope.lesson.slug] = $scope.lesson;
+    $location.path('/lessons/' + $scope.lesson.slug);
   };
 
 }])
 
 .controller('LessonsListCtrl', ['$scope', 'Lessons', '$location', function($scope, Lessons, $location){
   Lessons.all.$bind($scope, 'lessons');
+
+  $scope.getStyles = function(lesson) {
+    if(lesson.picture){
+      return {
+        'background': 'url(' + lesson.picture + ')'
+      };
+    } else {
+      return {};
+    }
+  };
 
   $scope.goToLesson = function(id, name) {
     $location.path('/lessons/' + id);

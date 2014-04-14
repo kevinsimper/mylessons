@@ -2,18 +2,11 @@
   <div class="page-header">
     <h1>Lessons</h1>
   </div>
-  <table class="table table-hover lessons">
-    <thead>
-      <tr>
-        <th>Lektion</th>
-        <th>Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="(id, lesson) in lessons" ng-click="goToLesson(id, lesson)" class="lesson">
-        <td>{{lesson.name}}</td>
-        <td>{{lesson.type}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="lessons">
+    <div ng-repeat="(id, lesson) in lessons" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
+      <h1>{{lesson.name}}</h1>
+      <div>Type: {{lesson.type}}</div>
+      <div>Niveau: {{lesson.level}}</div>
+    </div>
+  </div>
 </div>
