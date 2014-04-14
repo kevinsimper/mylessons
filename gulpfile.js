@@ -24,7 +24,10 @@ gulp.task('lint', function() {
 });
 
 gulp.task('default', ['lint', 'browserify', 'stylus'], function() {
-  gulp.watch(['public/**/*.js', '!public/build/**'], ['browserify']);
+  gulp.watch(['public/**/*.js', '!public/build/**'], ['browserify'])
+  .on('change', function(file) {
+      console.log(file.path);
+    });
   gulp.watch(['public/styles/**.styl'], ['stylus']);
 });
 
