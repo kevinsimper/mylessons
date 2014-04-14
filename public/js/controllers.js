@@ -31,6 +31,15 @@ var app = require('./modules/app')
 
 }])
 
+.controller('NewLessonCtrl', ['$scope', '$routeParams', 'Lessons', function($scope, $routeParams, Lessons){
+  Lessons.all.$bind($scope, 'lessons');
+
+  $scope.addLesson = function() {
+    $scope.lessons[$scope.lesson.slug] = $scope.lesson;
+  };
+
+}])
+
 .controller('LessonsListCtrl', ['$scope', 'Lessons', '$location', function($scope, Lessons, $location){
   Lessons.all.$bind($scope, 'lessons');
 

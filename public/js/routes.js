@@ -5,11 +5,16 @@ app.config(['$routeProvider', function($routeProvider) {
     .when('/', {
       controller: 'WelcomeCtrl',
       templateUrl: 'templates/welcome.html'
-    })    
+    })
     .when('/dashboard', {
       authRequired: true,
       controller: 'DashboardCtrl',
       templateUrl: 'templates/dashboard.html'
+    })
+    .when('/lessons/new', {
+      authRequired: true,
+      controller: 'NewLessonCtrl',
+      templateUrl: 'templates/newlesson.html'
     })
     .when('/lessons/:lessonid', {
       authRequired: true,

@@ -12,6 +12,9 @@
           <li>
             <a href="#/lessons" class="navbar-link">Lektioner</a>
           </li>
+          <li>
+            <a href="#/lessons/new" class="navbar-link">Ny lektion</a>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-hide="auth.user">
           <li>
@@ -20,7 +23,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-show="auth.user">
           <li class="dropdown">
-            <a class="dropdown-toggle username" data-toggle="dropdown"><img ng-src="http://graph.facebook.com/{{auth.user.thirdPartyUserData.username}}/picture" class="profilepic" alt="">{{auth.user.displayName}} <b class="caret"></b></a>
+            <a class="dropdown-toggle username" data-toggle="dropdown"><img ng-src="http://graph.facebook.com/{{auth.user.thirdPartyUserData.username}}/picture" class="profilepic" alt="" ng-show="auth.user.thirdPartyUserData.username" />{{auth.user.displayName}} <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#/user">Profil</a></li>
               <li class="divider"></li>
