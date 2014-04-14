@@ -1,4 +1,12 @@
 <div class="container lesson">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" ng-click="editLesson()">Edit</button>
+        <button type="button" class="btn btn-default" ng-click="deleteLesson()">Delete</button>
+      </div>
+    </div>
+  </div>
   <h1>{{lesson.name}}</h1>
   <div ng-include="getTemplateUrl(lesson.type)"></div>
 </div>

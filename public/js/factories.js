@@ -21,7 +21,10 @@ app.factory('Lessons', ['$firebase', 'firebaseUrl',
     return {
       all: lessens,
       choose: function(id){
-        return $firebase(new Firebase(firebaseUrl + 'lessons' + '/' + id));
+        return lessens.$child(id);
+      },
+      delete: function(id){
+        return lessens.$remove(id);
       }
     };
 }])

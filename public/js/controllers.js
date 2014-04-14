@@ -19,19 +19,33 @@ var app = require('./modules/app')
   function($scope, $firebase) {
 }])
 
-.controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', function($scope, $routeParams, Lessons){
+.controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', function($scope, $routeParams, Lessons, $location){
   $scope.id = $routeParams.lessonid;
   Lessons.choose($scope.id).$bind($scope, 'lesson');
 
   $scope.getTemplateUrl = function(type) {
-    return '/templates/media/' + type + '.html';
+    if(type){
+      return '/templates/media/' + type + '.html'; 
+    } else {
+      return '';
+    }
   };
 
+  $scope.deleteLesson = function() {
+    alert('Sletter ' + $scope.id);
+    Lessons.delete($scope.id);
+    $location.path('/lessons');
+  };
+
+  $scope.editLesson = function(){
+    $location.path('/lessons/' + $scope.lesson.slug + '/edit');
+  };
 }])
 
-.controller('EditLessonCtrl', ['$scope', '$routeParams', 'Lessons', function($scope, $routeParams, Lessons){
+.controller('EditLessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', function($scope, $routeParams, Lessons, $location){
   $scope.id = $routeParams.lessonid;
   Lessons.choose($scope.id).$bind($scope, 'lesson');
+
 
 }])
 
