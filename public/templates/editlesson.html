@@ -31,6 +31,37 @@
           <label for="name">Billede (url)</label>
           <input type="text" class="form-control" name="name" ng-model="lesson.picture">
         </div>
+        <h2>Quiz</h2>
+        <div class="form-group">
+          <label for="name">Points for quiz</label>
+          <input type="text" class="form-control" name="name" ng-model="lesson.quiz.points">
+        </div>
+        <button class="btn btn-info" ng-click="addQuestion()">Tilføj spørgsmål</button>
+        <h4>Spørgsmål</h4>
+        <div ng-repeat="(id, item) in lesson.quiz.questions track by $index">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="item.question">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="$parent.removeQuestion(id)">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </span>
+            </div>
+          </div>
+          <div class="row" ng-repeat="(answerId, answer) in item.answers track by $index">
+            <div class="col-md-11 col-md-offset-1">
+               <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="name" ng-model="answer.answer">
+                  <span class="input-group-addon">
+                    <input type="radio" name="{{id}}" value="{{answerId}}" value="true" ng-model="item.correct">
+                  </span>
+                </div>
+               </div>
+            </div>
+          </div>
+        </div>
         <a ng-click="submitted = true" class="btn btn-primary">Gem lesson</a>
       </form>
     </div>

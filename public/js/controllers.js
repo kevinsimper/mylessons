@@ -44,8 +44,29 @@ var app = require('./modules/app')
 
 .controller('EditLessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', function($scope, $routeParams, Lessons, $location){
   $scope.id = $routeParams.lessonid;
-  Lessons.choose($scope.id).$bind($scope, 'lesson');
+  var lesson = Lessons.choose($scope.id);
+  lesson.$bind($scope, 'lesson');
 
+  $scope.removeQuestion = function(name) {
+    console.log(name)
+    var question = lesson.$child('quiz/questions').$remove(name);
+    // console.log($scope.lesson.quiz.questions.indexOf(lesson));
+  };
+  $scope.addQuestion = function() {
+    var questions = lesson.$child('quiz/questions');
+    var question = {
+      question: 'New question'
+    };
+    questions.$add(question).then(function(ref){
+      var answer = {
+        answer: 'Answer',
+        correct: false
+      };
+      questions.$child(ref.name()).$child('answers').$add(answer);
+      questions.$child(ref.name()).$child('answers').$add(answer);
+      questions.$child(ref.name()).$child('answers').$add(answer);
+    });
+  };
 
 }])
 
