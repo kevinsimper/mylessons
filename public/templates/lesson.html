@@ -9,4 +9,22 @@
   </div>
   <h1>{{lesson.name}}</h1>
   <div ng-include="getTemplateUrl(lesson.type)"></div>
+  <h2>Quiz</h2>
+  <div class="row">
+    <div class="col-md-12" ng-repeat="(id, question) in lesson.quiz.questions">
+      <h3>{{question.question}}</h3>
+      <form>
+        <div class="radio" ng-repeat="(answerId, answer) in question.answers">
+          <label>
+            <input type="radio" name="{{id}}" class="radio"> {{answer.answer}}
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary">Answer quiz</button>
+    </div>
+  </div>
 </div>
