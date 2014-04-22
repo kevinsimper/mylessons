@@ -8,23 +8,35 @@
     </div>
   </div>
   <h1>{{lesson.name}}</h1>
+
   <div ng-include="getTemplateUrl(lesson.type)"></div>
+  
   <h2>Quiz</h2>
-  <div class="row">
-    <div class="col-md-12" ng-repeat="(id, question) in lesson.quiz.questions">
-      <h3>{{question.question}}</h3>
-      <form>
-        <div class="radio" ng-repeat="(answerId, answer) in question.answers">
-          <label>
-            <input type="radio" name="{{id}}" class="radio"> {{answer.answer}}
-          </label>
-        </div>
-      </form>
+  <form ng-submit="submitQuiz()">
+    <div class="row">
+      <div class="col-md-12" ng-repeat="(id, question) in userQuiz.questions">
+        <h3>{{question.question}}</h3>
+          <div class="radio" ng-repeat="(answerId, answer) in question.answers">
+            <label>
+              <span>{{userAnswer}}</span>
+              <input type="radio" name="{{id}}" value="{{answerId}}" ng-model="question.checked" class="radio"> {{answer.answer}}
+            </label>
+          </div>
+      </div>
     </div>
-  </div>
+    <div class="alert alert-danger" ng-show="userQuiz.error">
+      You have to choose an answer in all the questions
+    </div>
+    <div class="alert alert-success" ng-show="submittedQuiz && userQuiz.congrats">
+      You got all the right answers!
+    </div>
+    <div class="alert alert-warning" ng-show="submittedQuiz && userQuiz.failed">
+      You did not get all the answers correct!
+    </div>
+    <button class="btn btn-primary" ng-hide="userQuiz.answered">Answer quiz</button>
+  </form>
   <div class="row">
     <div class="col-md-12">
-      <button class="btn btn-primary">Answer quiz</button>
     </div>
   </div>
 </div>

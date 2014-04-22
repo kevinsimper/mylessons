@@ -1,3 +1,4 @@
+var angular = require('angular');
 var app = require('./modules/app')
 
 .controller('WelcomeCtrl', ['$scope', function($scope){
@@ -21,7 +22,10 @@ var app = require('./modules/app')
 
 .controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', function($scope, $routeParams, Lessons, $location){
   $scope.id = $routeParams.lessonid;
-  Lessons.choose($scope.id).$bind($scope, 'lesson');
+  Lessons.choose($scope.id).$bind($scope, 'lesson').then(function(){
+    $scope.userQuiz = angular.copy($scope.lesson.quiz);
+  });
+
 
   $scope.getTemplateUrl = function(type) {
     if(type){
@@ -40,6 +44,45 @@ var app = require('./modules/app')
   $scope.editLesson = function(){
     $location.path('/lessons/' + $scope.lesson.slug + '/edit');
   };
+
+  $scope.submitQuiz = function() {
+    $scope.submittedQuiz = true;
+    var questionNumbers = 0,
+        errors = false,
+        allCorrect = true;
+
+    angular.forEach($scope.userQuiz.questions, function(val, key) {
+      questionNumbers++;
+      if(typeof val.checked === "undefined") {
+        errors = true;
+        return false;
+      }
+      console.log(val.checked, val.correct, val.checked == val.correct);
+      if(val.checked == val.correct){
+        console.log('Correct');
+      } else {
+        console.log('failed')
+        allCorrect = false;
+      }
+    });
+
+    // If NO errors occured in the form
+    if(!errors){
+      $scope.userQuiz.error = false;
+      // if all answers is correct
+      if(allCorrect){
+        $scope.userQuiz.congrats = true;
+      } else {
+        $scope.userQuiz.failed = true;
+      }
+      $scope.userQuiz.answered = true;
+    } else {
+      $scope.userQuiz.error = true;
+    }
+    console.log(errors, $scope.submittedQuiz, $scope.userQuiz.congrats,$scope.userQuiz.failed, $scope.userQuiz.error);
+
+  };
+
 }])
 
 .controller('EditLessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', function($scope, $routeParams, Lessons, $location){
@@ -59,8 +102,7 @@ var app = require('./modules/app')
     };
     questions.$add(question).then(function(ref){
       var answer = {
-        answer: 'Answer',
-        correct: false
+        answer: 'Answer'
       };
       questions.$child(ref.name()).$child('answers').$add(answer);
       questions.$child(ref.name()).$child('answers').$add(answer);

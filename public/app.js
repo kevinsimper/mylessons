@@ -3,7 +3,7 @@ require('./vendor/jquery/jquery-2.1.0');
 require('./vendor/bootstrap/js/bootstrap.js');
 
 // Core libraries
-require('./vendor/angular/angular');
+require('angular');
 require('./vendor/angular/angular-route');
 require('./vendor/angular-route-security/module.routeSecurity');
 require('./vendor/firebase/firebase');
