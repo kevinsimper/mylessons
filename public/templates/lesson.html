@@ -14,34 +14,39 @@
 
       <div ng-include="getTemplateUrl(lesson.type)"></div>
       
-      <h2>Quiz</h2>
-      <form ng-submit="submitQuiz()">
-        <div class="row">
-          <div class="col-md-12" ng-repeat="(id, question) in userQuiz.questions">
-            <h3>{{question.question}}</h3>
-              <div class="radio" ng-repeat="(answerId, answer) in question.answers">
-                <label>
-                  <span>{{userAnswer}}</span>
-                  <input type="radio" name="{{id}}" value="{{answerId}}" ng-model="question.checked" class="radio"> {{answer.answer}}
-                </label>
+      <hr>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Quiz</h3>
+        </div>
+        <div class="panel-body">
+          <form ng-submit="submitQuiz()">
+            <div class="row">
+              <div class="col-md-12" ng-repeat="(id, question) in userQuiz.questions">
+                <h3>{{question.question}}</h3>
+                  <div class="radio" ng-repeat="(answerId, answer) in question.answers">
+                    <label>
+                      <span>{{userAnswer}}</span>
+                      <input type="radio" name="{{id}}" value="{{answerId}}" ng-model="question.checked" class="radio"> {{answer.answer}}
+                    </label>
+                  </div>
               </div>
-          </div>
-        </div>
-        <div class="alert alert-danger" ng-show="userQuiz.error">
-          You have to choose an answer in all the questions
-        </div>
-        <div class="alert alert-success" ng-show="submittedQuiz && userQuiz.congrats">
-          You got all the right answers!
-        </div>
-        <div class="alert alert-warning" ng-show="submittedQuiz && userQuiz.failed">
-          You did not get all the answers correct!
-        </div>
-        <button class="btn btn-primary" ng-hide="userQuiz.answered">Answer quiz</button>
-      </form>
-      <div class="row">
-        <div class="col-md-12">
+            </div>
+            <div class="alert alert-danger" ng-show="userQuiz.error">
+              You have to choose an answer in all the questions
+            </div>
+            <div class="alert alert-success" ng-show="submittedQuiz && userQuiz.congrats">
+              You got all the right answers!
+            </div>
+            <div class="alert alert-warning" ng-show="submittedQuiz && userQuiz.failed">
+              You did not get all the answers correct!
+            </div>
+            <button class="btn btn-primary" ng-hide="userQuiz.answered">Answer quiz</button>
+          </form>
         </div>
       </div>
+
     </div>
   </div>
 </div>

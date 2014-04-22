@@ -2,23 +2,33 @@
   <img ng-src="{{lesson.picture}}" alt="">
 </div>
 <div class="row">
-  <div class="col-md-6">
-    <h2>Beskrivelse</h2>
-    <div>
-      {{lesson.description}}
-    </div>
-  </div>
-  <div class="col-md-6">
-    <h2>Info</h2>
+  <div class="col-md-12">
     <table class="table">
       <tr>
         <td><strong>Type</strong></td>
         <td>{{lesson.type}}</td>
-      </tr>
-      <tr>
         <td><strong>Sværhedsgraden</strong></td>
         <td>{{lesson.level}}</td>
+        <td><strong>Points</strong></td>
+        <td>{{lesson.quiz.points}}</td>
       </tr>
     </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h3>Description</h3>
+    <div>
+      {{lesson.description}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div style="text-align: right">
+      <a href class="btn btn-primary" ng-href="{{lesson.articleLink}}">
+        Go to article <span class="glyphicon glyphicon-new-window"></span>
+      </a>
+    </div>
   </div>
 </div>

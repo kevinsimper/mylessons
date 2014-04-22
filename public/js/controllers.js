@@ -20,10 +20,11 @@ var app = require('./modules/app')
   function($scope, $firebase) {
 }])
 
-.controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', function($scope, $routeParams, Lessons, $location){
+.controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', '$sce', function($scope, $routeParams, Lessons, $location, $sce){
   $scope.id = $routeParams.lessonid;
   Lessons.choose($scope.id).$bind($scope, 'lesson').then(function(){
     $scope.userQuiz = angular.copy($scope.lesson.quiz);
+    $scope.setYoutubeEmbedUrl();
   });
 
 
@@ -33,6 +34,11 @@ var app = require('./modules/app')
     } else {
       return '';
     }
+  };
+
+  $scope.setYoutubeEmbedUrl = function() {
+    var youtubeData = $scope.lesson.youtubelink.split('v=')
+    $scope.youtubeEmbedUrl = $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + youtubeData[1]);
   };
 
   $scope.deleteLesson = function() {

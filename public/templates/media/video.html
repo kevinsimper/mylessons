@@ -1,1 +1,28 @@
-video.html
+<div class="youtube-container">
+	<style>.embed-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+	<div class='embed-container'>
+		<iframe ng-src='{{youtubeEmbedUrl}}' frameborder='0' allowfullscreen></iframe>
+	</div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <td><strong>Type</strong></td>
+        <td>{{lesson.type}}</td>
+        <td><strong>Sværhedsgraden</strong></td>
+        <td>{{lesson.level}}</td>
+        <td><strong>Points</strong></td>
+        <td>{{lesson.quiz.points}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h3>Description</h3>
+    <div>
+      {{lesson.description}}
+    </div>
+  </div>
+</div>
