@@ -6,8 +6,15 @@
     <div ng-repeat="(id, lesson) in lessons" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
       <div class="info">
         <div><strong>{{lesson.name}}</strong></div>
-        <div>Type: {{lesson.type}}</div>
-        <div>Niveau: {{lesson.level}}</div>
+        <div style="padding-top: 5px;">
+          <table style="width: 100%">
+            <tr>
+              <td><span class="glyphicon glyphicon-tag"></span> {{lesson.type}}</td>
+              <td><span class="glyphicon glyphicon-tower"></span> {{lesson.level}}</td>
+              <td><span class="glyphicon glyphicon-time"></span> {{lesson.time}}</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
