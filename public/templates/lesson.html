@@ -24,7 +24,7 @@
           <form ng-submit="submitQuiz()">
             <div class="row">
               <div class="col-md-12" ng-repeat="(id, question) in userQuiz.questions">
-                <h3>{{question.question}}</h3>
+                <h4>{{question.question}}</h4>
                   <div class="radio" ng-repeat="(answerId, answer) in question.answers">
                     <label>
                       <span>{{userAnswer}}</span>
