@@ -52,16 +52,18 @@ var app = require('./modules/app')
         allCorrect = true;
 
     angular.forEach($scope.userQuiz.questions, function(val, key) {
+      // Count the number of questions 
+      // because the object has no lenght
       questionNumbers++;
+      // If the value has not been set
+      // then the question has not been answered
       if(typeof val.checked === "undefined") {
         errors = true;
         return false;
       }
-      console.log(val.checked, val.correct, val.checked == val.correct);
-      if(val.checked == val.correct){
-        console.log('Correct');
-      } else {
-        console.log('failed')
+
+      // If not all is correct
+      if(val.checked !== val.correct){
         allCorrect = false;
       }
     });
@@ -75,11 +77,12 @@ var app = require('./modules/app')
       } else {
         $scope.userQuiz.failed = true;
       }
+      // Defined that the question has been defined
       $scope.userQuiz.answered = true;
     } else {
+      // If there was an error, show an msg
       $scope.userQuiz.error = true;
     }
-    console.log(errors, $scope.submittedQuiz, $scope.userQuiz.congrats,$scope.userQuiz.failed, $scope.userQuiz.error);
 
   };
 
