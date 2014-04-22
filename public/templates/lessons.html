@@ -4,9 +4,11 @@
   </div>
   <div class="lessons">
     <div ng-repeat="(id, lesson) in lessons" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
-      <h1>{{lesson.name}}</h1>
-      <div>Type: {{lesson.type}}</div>
-      <div>Niveau: {{lesson.level}}</div>
+      <div class="info">
+        <div><strong>{{lesson.name}}</strong></div>
+        <div>Type: {{lesson.type}}</div>
+        <div>Niveau: {{lesson.level}}</div>
+      </div>
     </div>
   </div>
 </div>
