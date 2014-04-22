@@ -138,7 +138,7 @@ var app = require('./modules/app')
   $scope.getStyles = function(lesson) {
     if(lesson.picture){
       return {
-        'background': 'url(' + lesson.picture + ')'
+        'background': 'url(' + lesson.thumbnail + ')'
       };
     } else {
       return {};
