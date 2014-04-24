@@ -36,6 +36,11 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'UserCtrl',
       templateUrl: 'templates/user.html'
     })
+    .when('/user/points', {
+      authRequired: true,
+      controller: 'UserPointsCtrl',
+      templateUrl: 'templates/userpoints.html'
+    })    
     .otherwise({
       redirectTo: '/fail'
     });

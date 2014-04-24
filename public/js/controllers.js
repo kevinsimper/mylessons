@@ -12,12 +12,21 @@ var app = require('./modules/app')
 }])
 
 .controller('UserCtrl', ['$scope', '$firebase', 'User', '$rootScope', function($scope, $firebase, User, $rootScope){
-    $rootScope.$watch('auth.user', function(){
-      var user = $rootScope.auth.user;
-      if(user !== null){
-        User.$child(user.uid).$bind($scope, "user");
-      }
-    });
+  $rootScope.$watch('auth.user', function(){
+    var user = $rootScope.auth.user;
+    if(user !== null){
+      User.$child(user.uid).$bind($scope, "user");
+    }
+  });
+}])
+
+.controller('UserPointsCtrl', ['$scope', '$firebase', 'User', '$rootScope', function($scope, $firebase, User, $rootScope){
+  $rootScope.$watch('auth.user', function(){
+    var user = $rootScope.auth.user;
+    if(user !== null){
+      User.$child(user.uid).$bind($scope, "user");
+    }
+  });
 }])
 
 .controller('LoginCtrl', 
@@ -25,11 +34,15 @@ var app = require('./modules/app')
   function($scope, $firebase) {
 }])
 
-.controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', '$sce', function($scope, $routeParams, Lessons, $location, $sce){
+.controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', '$rootScope', '$location', '$sce', 'Quiz', function($scope, $routeParams, Lessons, $rootScope, $location, $sce, Quiz){
   $scope.id = $routeParams.lessonid;
   Lessons.choose($scope.id).$bind($scope, 'lesson').then(function(){
     $scope.userQuiz = angular.copy($scope.lesson.quiz);
-    $scope.setYoutubeEmbedUrl();
+
+    // Set the URL if the lesson is a video
+    if($scope.lesson.type === 'video'){
+      $scope.setYoutubeEmbedUrl();
+    }
   });
 
 
@@ -85,6 +98,8 @@ var app = require('./modules/app')
       // if all answers is correct
       if(allCorrect){
         $scope.userQuiz.congrats = true;
+
+        Quiz.addPointsToUser($rootScope.auth.user.uid, $scope.lesson.name, $scope.lesson.quiz.points);
       } else {
         $scope.userQuiz.failed = true;
       }

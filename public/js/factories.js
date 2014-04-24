@@ -33,3 +33,19 @@ app.factory('User', ['$firebase', 'firebaseUrl', '$rootScope',
   function($firebase, firebaseUrl, $rootScope) {
     return $firebase(new Firebase(firebaseUrl + 'users/'));
 }])
+
+app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope', 
+  function($firebase, firebaseUrl, $rootScope) {
+    // return $firebase(new Firebase(firebaseUrl + 'users/'));
+    return {
+      addPointsToUser: function(user, lesson, points) {
+        var fbRef = $firebase(new Firebase(firebaseUrl + 'users/'));
+        var userPointsRef = fbRef.$child(user + '/points');
+        userPointsRef.$add({
+          points: points,
+          name: lesson
+        });
+        return userPointsRef;
+      }
+    };
+}])
