@@ -11,8 +11,13 @@ var app = require('./modules/app')
     $scope.name = 'Kevin';
 }])
 
-.controller('UserCtrl', ['$scope', '$firebase', 'User', function($scope, $firebase, User){
-    User.$bind($scope, "user");
+.controller('UserCtrl', ['$scope', '$firebase', 'User', '$rootScope', function($scope, $firebase, User, $rootScope){
+    $rootScope.$watch('auth.user', function(){
+      var user = $rootScope.auth.user;
+      if(user !== null){
+        User.$child(user.uid).$bind($scope, "user");
+      }
+    });
 }])
 
 .controller('LoginCtrl', 

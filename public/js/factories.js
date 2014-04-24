@@ -31,5 +31,5 @@ app.factory('Lessons', ['$firebase', 'firebaseUrl',
 
 app.factory('User', ['$firebase', 'firebaseUrl', '$rootScope', 
   function($firebase, firebaseUrl, $rootScope) {
-    return $firebase(new Firebase(firebaseUrl + 'users/' + 'kevin'));
+    return $firebase(new Firebase(firebaseUrl + 'users/'));
 }])
