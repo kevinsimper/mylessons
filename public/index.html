@@ -22,6 +22,7 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-show="auth.user">
+          <li><a href="#/user/points"><strong>Points</strong> <span>{{auth.user.data.pointsTotal}}</span></a></li>
           <li class="dropdown">
             <a class="dropdown-toggle username" data-toggle="dropdown"><img ng-src="http://graph.facebook.com/{{auth.user.thirdPartyUserData.username}}/picture" class="profilepic" alt="" ng-show="auth.user.thirdPartyUserData.username" />{{auth.user.displayName}} <b class="caret"></b></a>
             <ul class="dropdown-menu">

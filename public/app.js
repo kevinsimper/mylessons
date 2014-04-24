@@ -17,12 +17,21 @@ require('./js/controllers');
 
 var app = require('./js/modules/app');
 
-app.run(['$rootScope', '$location', 'LoginHandler', function($rootScope, $location, LoginHandler) {
-    // register listener to watch route changes
-    $rootScope.$on('$locationChangeStart', function(event, next, current) {
-      // if(typeof LoginHandler.auth.user.uid === "undefined"){
-        // console.log(LoginHandler.auth);
-        // $location.path( "/" );
-      // }
-    });
- }]);
+app.run(['$rootScope', '$location', 'LoginHandler', 'User', function($rootScope, $location, LoginHandler, User) {
+
+  $rootScope.$on("$firebaseSimpleLogin:login", function(e, user) {
+    console.log("User " + user.uid + " successfully logged in!");
+    console.log(LoginHandler.user);
+    if(LoginHandler.user !== null){
+      LoginHandler.user.data = User.$child(user.uid);
+    }
+  });
+
+  // register listener to watch route changes
+  $rootScope.$on('$locationChangeStart', function(event, next, current) {
+    // if(typeof LoginHandler.auth.user.uid === "undefined"){
+      // console.log(LoginHandler.auth);
+      // $location.path( "/" );
+    // }
+  });
+}]);

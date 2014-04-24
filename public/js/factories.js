@@ -10,7 +10,7 @@ app.factory('LoginHandler',
     data.auth = $firebaseSimpleLogin(ref);
     $rootScope.auth = $firebaseSimpleLogin(ref);
 
-    return data;
+    return $rootScope.auth;
 
 }])
 
@@ -40,7 +40,9 @@ app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
     return {
       addPointsToUser: function(user, lesson, points) {
         var fbRef = $firebase(new Firebase(firebaseUrl + 'users/'));
-        var userPointsRef = fbRef.$child(user + '/points');
+        var userRef = fbRef.$child(user);
+        userRef.$child('pointsTotal').$set((parseInt(userRef.pointsTotal) + parseInt(points)).toString());
+        var userPointsRef = userRef.$child('points');
         userPointsRef.$add({
           points: points,
           name: lesson
