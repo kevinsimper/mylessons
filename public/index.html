@@ -26,6 +26,7 @@
             <a class="dropdown-toggle username" data-toggle="dropdown"><img ng-src="http://graph.facebook.com/{{auth.user.thirdPartyUserData.username}}/picture" class="profilepic" alt="" ng-show="auth.user.thirdPartyUserData.username" />{{auth.user.displayName}} <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#/user">Profil</a></li>
+              <li><a href="#/user/points">Point</a></li>
               <li class="divider"></li>
               <li><a ng-click="auth.$logout()" href="#">Logout</a></li>
             </ul>
