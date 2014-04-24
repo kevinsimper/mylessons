@@ -20,8 +20,6 @@ var app = require('./js/modules/app');
 app.run(['$rootScope', '$location', 'LoginHandler', 'User', function($rootScope, $location, LoginHandler, User) {
 
   $rootScope.$on("$firebaseSimpleLogin:login", function(e, user) {
-    console.log("User " + user.uid + " successfully logged in!");
-    console.log(LoginHandler.user);
     if(LoginHandler.user !== null){
       LoginHandler.user.data = User.$child(user.uid);
     }

@@ -15,8 +15,12 @@
       <div ng-include="getTemplateUrl(lesson.type)"></div>
       
       <hr>
+      
+      <div class="alert alert-info" ng-show="quizTaken">
+        You have already taken this quiz!
+      </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default" ng-hide="quizTaken">
         <div class="panel-heading">
           <h3 class="panel-title">Quiz</h3>
         </div>

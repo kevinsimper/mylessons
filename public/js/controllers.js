@@ -43,6 +43,11 @@ var app = require('./modules/app')
     if($scope.lesson.type === 'video'){
       $scope.setYoutubeEmbedUrl();
     }
+
+    Quiz.hasUserTakenQuiz($rootScope.auth.user.uid, $scope.id, function(result){
+      console.log(result);
+      $scope.quizTaken = result;
+    });
   });
 
 
@@ -99,7 +104,7 @@ var app = require('./modules/app')
       if(allCorrect){
         $scope.userQuiz.congrats = true;
 
-        Quiz.addPointsToUser($rootScope.auth.user.uid, $scope.lesson.name, $scope.lesson.quiz.points);
+        Quiz.addPointsToUser($rootScope.auth.user.uid, $scope.lesson.name, $scope.id, $scope.lesson.quiz.points);
       } else {
         $scope.userQuiz.failed = true;
       }

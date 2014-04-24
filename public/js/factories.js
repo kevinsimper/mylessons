@@ -38,9 +38,10 @@ app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
   function($firebase, firebaseUrl, $rootScope) {
     // return $firebase(new Firebase(firebaseUrl + 'users/'));
     return {
-      addPointsToUser: function(user, lesson, points) {
+      addPointsToUser: function(user, lesson, lessonSlug, points) {
         var fbRef = $firebase(new Firebase(firebaseUrl + 'users/'));
         var userRef = fbRef.$child(user);
+        userRef.$child('quizTaken' + '/' + lessonSlug).$set(true);
         userRef.$child('pointsTotal').$set((parseInt(userRef.pointsTotal) + parseInt(points)).toString());
         var userPointsRef = userRef.$child('points');
         userPointsRef.$add({
@@ -48,6 +49,19 @@ app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
           name: lesson
         });
         return userPointsRef;
+      },
+      hasUserTakenQuiz: function(user, lessonSlug, callback) {
+        var fbRef = $firebase(new Firebase(firebaseUrl + 'users/'));
+        var userRef = fbRef.$child(user);
+        var quizTakenRef = userRef.$child('quizTaken' + '/' + lessonSlug);
+        quizTakenRef.$on("loaded", function(){
+          console.log(typeof quizTakenRef.$value, quizTakenRef )
+          var result = false;
+          if(quizTakenRef.$value == true){
+            result = true;
+          }
+          callback(result);
+        });
       }
     };
 }])
