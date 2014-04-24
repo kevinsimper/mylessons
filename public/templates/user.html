@@ -10,10 +10,31 @@
           <label for="name">Navn</label>
           <input type="text" class="form-control" ng-model="user.name" name="name">
         </div>
+
         <div class="form-group">
           <label for="name">E-mail</label>
           <input type="text" class="form-control" ng-model="user.email" name="name">
         </div>
+
+        <div class="form-group">
+          <label for="name">Are you a member of IDA - The Danish Society of Engineers?</label>
+          <div class="radio">
+            <label>
+              <input type="radio" value="true" ng-model="user.idaMember"> Ja
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" value="false" ng-model="user.idaMember"> Nej
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bio">What are your interests, profession and formal education?</label>
+          <textarea name="bio" ng-model="user.bio" class="form-control" rows="3"></textarea>
+        </div>
+
         <a class="btn btn-primary" ng-click="submitted = true">Gem</a>
 
       </form>
