@@ -3,6 +3,7 @@ var browserify = require('gulp-browserify');
 var stylus = require('gulp-stylus');
 var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
+var livereload = require('gulp-livereload');
 
 gulp.task('browserify', function() {
   gulp.src('public/app.js').pipe(browserify({
@@ -31,12 +32,19 @@ gulp.task('lint', function() {
 });
 
 gulp.task('default', ['lint', 'browserify', 'stylus'], function() {
+  var server = livereload();
+
   gulp.watch(['public/**/*.js', '!public/build/**'], ['browserify'])
   .on('change', function(file) {
       console.log(new Date());
       console.log(file.path);
     });
   gulp.watch(['public/styles/**.styl'], ['stylus']);
+
+  gulp.watch('public/build/**').on('change', function(file) {
+    console.log(file.path);
+    server.changed(file.path);
+  });
 });
 
 gulp.task('build', ['browserify', 'stylus']);
