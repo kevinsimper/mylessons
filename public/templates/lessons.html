@@ -31,7 +31,7 @@
     </div>
   </div>
   <div class="lessons">
-    <div ng-repeat="(id, lesson) in lessons | array | filter:search" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
+    <div ng-repeat="(id, lesson) in lessons" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
       <div class="info">
         <div><strong>{{shortenLessonname(lesson.name)}}</strong></div>
         <div class="lessonDetails">
