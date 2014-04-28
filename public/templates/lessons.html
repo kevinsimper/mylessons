@@ -1,9 +1,40 @@
+<div class="lessons-hero">
+</div>
 <div class="container">
   <div class="page-header">
     <h1>Lessons</h1>
   </div>
+  <div class="row filter">
+    <div class="col-md-12">
+      <form class="form-inline">
+        <div class="form-group">
+          <label>Type</label>
+          <select ng-model="search.type" class="form-control">
+            <option value="video">Video</option>
+            <option value="article">Article</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Niveau</label>
+          <select ng-model="search.level" class="form-control">
+            <option>Basic</option>
+            <option>Medium</option>
+            <option>Advanced</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Search</label>
+          <input type="text" class="form-control" ng-model="search.name">
+        </div>
+        <div class="btn btn-default btn-sm" ng-click="search = {}">
+          <span class="glyphicon glyphicon-remove"></span>
+          Reset filter
+        </div>
+      </form>
+    </div>
+  </div>
   <div class="lessons">
-    <div ng-repeat="(id, lesson) in lessons" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
+    <div ng-repeat="(id, lesson) in lessons | array | filter:search" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
       <div class="info">
         <div><strong>{{shortenLessonname(lesson.name)}}</strong></div>
         <div class="lessonDetails">
