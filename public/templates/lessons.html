@@ -5,8 +5,8 @@
   <div class="lessons">
     <div ng-repeat="(id, lesson) in lessons" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
       <div class="info">
-        <div><strong>{{lesson.name}}</strong></div>
-        <div style="padding-top: 5px;">
+        <div><strong>{{shortenLessonname(lesson.name)}}</strong></div>
+        <div class="lessonDetails">
           <table style="width: 100%">
             <tr>
               <td><span class="glyphicon glyphicon-tag"></span> {{lesson.type}}</td>
