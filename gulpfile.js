@@ -41,7 +41,7 @@ gulp.task('default', ['lint', 'browserify', 'stylus'], function() {
     });
   gulp.watch(['public/styles/**.styl'], ['stylus']);
 
-  gulp.watch('public/build/**').on('change', function(file) {
+  gulp.watch(['public/build/**', 'public/templates/**']).on('change', function(file) {
     console.log(file.path);
     server.changed(file.path);
   });
