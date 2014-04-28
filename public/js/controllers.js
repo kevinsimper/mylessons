@@ -157,7 +157,10 @@ var app = require('./modules/app')
 
 }])
 
-.controller('LessonsListCtrl', ['$scope', 'Lessons', '$location', function($scope, Lessons, $location){
+.controller('LessonsListCtrl', ['$scope', 'Lessons', '$location', 'LessonDefaultValues', function($scope, Lessons, $location, LessonDefaultValues){
+  $scope.types = LessonDefaultValues.types;
+  $scope.levels = LessonDefaultValues.levels;
+
   Lessons.all.$bind($scope, 'lessons');
   var temp = 'http://www.ac4d.com/blog/uploads/2011/04/jonKolko.jpg';
   $scope.getStyles = function(lesson) {
@@ -179,6 +182,7 @@ var app = require('./modules/app')
   };
 
   $scope.shortenLessonname = function(name) {
+    if(!name) return;
     if(name.length < 55){
       return name;
     } else {
