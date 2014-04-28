@@ -119,7 +119,9 @@ var app = require('./modules/app')
 
 }])
 
-.controller('EditLessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', function($scope, $routeParams, Lessons, $location){
+.controller('EditLessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', 'LessonDefaultValues', function($scope, $routeParams, Lessons, $location, LessonDefaultValues){
+  $scope.types = LessonDefaultValues.types;
+  $scope.levels = LessonDefaultValues.levels;
   $scope.id = $routeParams.lessonid;
   var lesson = Lessons.choose($scope.id);
   lesson.$bind($scope, 'lesson');

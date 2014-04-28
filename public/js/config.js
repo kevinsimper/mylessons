@@ -4,8 +4,12 @@ app.value('firebaseUrl', 'https://mylessons.firebaseio.com/')
 app.constant('loginRedirectPath', '/')
 
 app.value('LessonDefaultValues', {
-	'types': ['video', 'article', 'event'],
-	'levels': ['basic', 'medium', 'advanced']
+  'types': [{'display': 'Video', 'value': 'video'}, 
+            {'display': 'Article', 'value': 'article'},
+            {'display': 'Event', 'value': 'event'}],
+  'levels': [{'display': 'Basic', 'value': 'basic'}, 
+             {'display': 'Medium', 'value': 'medium'}, 
+             {'display': 'Advanced', 'value': 'advanced'}]
 })
 
 app.filter('array', function() {

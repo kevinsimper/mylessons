@@ -10,7 +10,9 @@
         </div>
         <div class="form-group">
           <label for="type">Niveau</label>
-          <input type="text" class="form-control" name="type" ng-model="lesson.level">
+          <select ng-model="lesson.level" class="form-control">
+            <option ng-repeat="level in levels" value="{{level.value}}">{{level.display}}</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="type">Time</label>
@@ -18,9 +20,8 @@
         </div>
         <div class="form-group">
           <label for="type">Type</label>
-          <select name="type" ng-model="lesson.type" id="" class="form-control">
-            <option>video</option>
-            <option>article</option>
+          <select ng-model="lesson.type" class="form-control">
+            <option ng-repeat="type in types" value="{{type.value}}">{{type.display}}</option>
           </select>
         </div>
         <div ng-show="lesson.type == 'article'">
