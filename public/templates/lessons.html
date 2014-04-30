@@ -10,7 +10,7 @@
         <div class="form-group">
           <label>Type</label>
           <select ng-model="search.type" class="form-control">
-            <option ng-repeat="type in types" value="{{level.value">{{type.display}}</option>
+            <option ng-repeat="type in types" value="{{type.value}}">{{type.display}}</option>
           </select>
         </div>
         <div class="form-group">
@@ -18,10 +18,6 @@
           <select ng-model="search.level" class="form-control">
             <option ng-repeat="level in levels" value="{{level.value}}">{{level.display}}</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label>Search</label>
-          <input type="text" class="form-control" ng-model="search.name">
         </div>
         <div class="btn btn-default btn-sm" ng-click="search = {}">
           <span class="glyphicon glyphicon-remove"></span>
@@ -31,7 +27,7 @@
     </div>
   </div>
   <div class="lessons">
-    <div ng-repeat="(id, lesson) in lessons" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
+    <div ng-repeat="(id, lesson) in lessons | filterObjects:search" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
       <div class="info">
         <div><strong>{{shortenLessonname(lesson.name)}}</strong></div>
         <div class="lessonDetails">
