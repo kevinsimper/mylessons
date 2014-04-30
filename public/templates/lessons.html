@@ -31,13 +31,7 @@
       <div class="info">
         <div><strong>{{shortenLessonname(lesson.name)}}</strong></div>
         <div class="lessonDetails">
-          <table style="width: 100%">
-            <tr>
-              <td><span class="glyphicon glyphicon-tag"></span> {{lesson.type}}</td>
-              <td><span class="glyphicon glyphicon-tower"></span> {{lesson.level}}</td>
-              <td><span class="glyphicon glyphicon-time"></span> {{lesson.time}}</td>
-            </tr>
-          </table>
+          {{lesson.type}} - {{lesson.level}} - {{lesson.quiz.points}} points - {{lesson.time}}
         </div>
       </div>
     </div>
