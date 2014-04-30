@@ -1,10 +1,11 @@
 var Firebase = require('Firebase');
 var rootRef = new Firebase('http://mylessons.firebaseio.com/');
+var highscoreRef = rootRef.child('highscore');
 
 console.log('Starter HighScore worker')
 
-var highscore = [];
 rootRef.child('users').on('value', function(snapshot){
+  var highscore = [];
   var data = snapshot.val();
   for(key in data){
     var person = {
@@ -16,7 +17,6 @@ rootRef.child('users').on('value', function(snapshot){
   highscore.sort(function(a, b){
     return b.points - a.points;
   });
-  rootRef.child('highscore').set(highscore);
+  highscoreRef.set(highscore);
   console.log('Highscore updated');
 });
-// console.log(highscore);
