@@ -33,8 +33,8 @@ var app = require('./modules/app')
   });
 }])
 
-.controller('LoginCtrl', 
-  ['$scope', '$firebase', 
+.controller('LoginCtrl',
+  ['$scope', '$firebase',
   function($scope, $firebase) {
 }])
 
@@ -57,7 +57,7 @@ var app = require('./modules/app')
 
   $scope.getTemplateUrl = function(type) {
     if(type){
-      return '/templates/media/' + type + '.html'; 
+      return '/templates/media/' + type + '.html';
     } else {
       return '';
     }
@@ -85,7 +85,7 @@ var app = require('./modules/app')
         allCorrect = true;
 
     angular.forEach($scope.userQuiz.questions, function(val, key) {
-      // Count the number of questions 
+      // Count the number of questions
       // because the object has no lenght
       questionNumbers++;
       // If the value has not been set

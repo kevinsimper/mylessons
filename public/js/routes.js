@@ -45,7 +45,7 @@ app.config(['$routeProvider', function($routeProvider) {
       authRequired: true,
       controller: 'UserPointsCtrl',
       templateUrl: 'templates/userpoints.html'
-    })    
+    })
     .otherwise({
       redirectTo: '/fail'
     });

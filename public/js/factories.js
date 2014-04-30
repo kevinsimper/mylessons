@@ -1,7 +1,7 @@
 var app = require('./modules/app');
 
-app.factory('LoginHandler', 
-  ['$firebaseSimpleLogin', 'firebaseUrl', '$rootScope', 
+app.factory('LoginHandler',
+  ['$firebaseSimpleLogin', 'firebaseUrl', '$rootScope',
   function($firebaseSimpleLogin, firebaseUrl, $rootScope){
     var data = {
       auth: {}
@@ -14,7 +14,7 @@ app.factory('LoginHandler',
 
 }])
 
-app.factory('Lessons', ['$firebase', 'firebaseUrl', 
+app.factory('Lessons', ['$firebase', 'firebaseUrl',
   function($firebase, firebaseUrl) {
     var lessens = $firebase(new Firebase(firebaseUrl + 'lessons'));
 
@@ -29,7 +29,7 @@ app.factory('Lessons', ['$firebase', 'firebaseUrl',
     };
 }])
 
-app.factory('User', ['$firebase', 'firebaseUrl', '$rootScope', 
+app.factory('User', ['$firebase', 'firebaseUrl', '$rootScope',
   function($firebase, firebaseUrl, $rootScope) {
     return $firebase(new Firebase(firebaseUrl + 'users/'));
 }])
