@@ -34,7 +34,12 @@ app.factory('User', ['$firebase', 'firebaseUrl', '$rootScope',
     return $firebase(new Firebase(firebaseUrl + 'users/'));
 }])
 
-app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope', 
+app.factory('Highscore', ['$firebase', 'firebaseUrl', '$rootScope',
+  function($firebase, firebaseUrl, $rootScope) {
+    return $firebase(new Firebase(firebaseUrl + 'highscore/'));
+}])
+
+app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
   function($firebase, firebaseUrl, $rootScope) {
     // return $firebase(new Firebase(firebaseUrl + 'users/'));
     return {

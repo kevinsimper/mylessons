@@ -8,7 +8,11 @@ var app = require('./modules/app')
 .controller('DashboardCtrl', ['$scope', '$firebase', 'User',
   function($scope, $firebase, User){
     User.$bind($scope, "user");
-    $scope.name = 'Kevin';
+}])
+
+.controller('HighscoreCtrl', ['$scope', '$firebase', 'Highscore',
+  function($scope, $firebase, Highscore){
+    Highscore.$bind($scope, "highscore");
 }])
 
 .controller('UserCtrl', ['$scope', '$firebase', 'User', '$rootScope', function($scope, $firebase, User, $rootScope){

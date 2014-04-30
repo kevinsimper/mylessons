@@ -11,6 +11,11 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'DashboardCtrl',
       templateUrl: 'templates/dashboard.html'
     })
+    .when('/highscore', {
+      authRequired: true,
+      controller: 'HighscoreCtrl',
+      templateUrl: 'templates/highscore.html'
+    })
     .when('/lessons/new', {
       authRequired: true,
       controller: 'NewLessonCtrl',

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Highscore</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Place</th>
+            <th>Points</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="person in highscore">
+            <td>
+              {{$index + 1}}
+            </td>
+            <td>
+              {{person.name}}
+            </td>
+            <td>
+              {{person.points}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
