@@ -37,6 +37,23 @@
             <p class="help-block">eg. https://www.youtube.com/watch?v=rqevO_zrxsA</p>
           </div>
         </div>
+        <div ng-show="lesson.type == 'event'">
+          <hr>
+          <h2>Event</h2>
+          <div class="form-group">
+            <label for="type">Date</label>
+            <input type="text" class="form-control" name="type" ng-model="lesson.event.date">
+          </div>
+          <div class="form-group">
+            <label for="type">Time</label>
+            <input type="text" class="form-control" name="type" ng-model="lesson.event.time">
+          </div>
+          <div class="form-group">
+            <label for="type">Place</label>
+            <input type="text" class="form-control" name="type" ng-model="lesson.event.place">
+          </div>
+          <hr>
+        </div>
         <div class="form-group">
           <label for="description">Beskrivelse</label>
           <textarea name="description" class="form-control" ng-model="lesson.description" rows="5"></textarea>

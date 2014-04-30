@@ -47,6 +47,9 @@ var app = require('./modules/app')
     if($scope.lesson.type === 'video'){
       $scope.setYoutubeEmbedUrl();
     }
+    if($scope.lesson.type === 'event'){
+      $scope.hideQuiz = true;
+    }
 
     Quiz.hasUserTakenQuiz($rootScope.auth.user.uid, $scope.id, function(result){
       console.log(result);
@@ -67,6 +70,8 @@ var app = require('./modules/app')
     var youtubeData = $scope.lesson.youtubelink.split('v=')
     $scope.youtubeEmbedUrl = $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + youtubeData[1]);
   };
+
+  $scope.hideQuiz = false;
 
   $scope.deleteLesson = function() {
     alert('Sletter ' + $scope.id);
