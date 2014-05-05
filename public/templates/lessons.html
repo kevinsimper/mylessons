@@ -27,11 +27,15 @@
     </div>
   </div>
   <div class="lessons">
-    <div ng-repeat="(id, lesson) in lessons | filterObjects:search" ng-click="goToLesson(id, lesson)" ng-style="getStyles(lesson)" class="lesson">
+    <div ng-repeat="(slug, lesson) in lessons | filterObjects:search" ng-click="goToLesson(slug, lesson)" ng-style="getStyles(lesson)" class="lesson">
       <div class="info">
         <div><strong>{{shortenLessonname(lesson.name)}}</strong></div>
         <div class="lessonDetails">
-          {{lesson.type}} - {{lesson.level}} - {{lesson.quiz.points}} points - {{lesson.time}}
+          {{lesson.type}} - {{lesson.level}}
+          <span>- {{lesson.quiz.points}}p - {{lesson.time}}</span>
+          <span ng-show="lesson.quizTaken">
+            <span class="glyphicon glyphicon-ok" style="color: green;"></span>
+          </span>
         </div>
       </div>
     </div>

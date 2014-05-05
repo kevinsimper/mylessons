@@ -60,7 +60,6 @@ app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
         var userRef = fbRef.$child(user);
         var quizTakenRef = userRef.$child('quizTaken' + '/' + lessonSlug);
         quizTakenRef.$on("loaded", function(){
-          console.log(typeof quizTakenRef.$value, quizTakenRef )
           var result = false;
           if(quizTakenRef.$value == true){
             result = true;

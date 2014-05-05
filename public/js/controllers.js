@@ -168,11 +168,21 @@ var app = require('./modules/app')
 
 }])
 
-.controller('LessonsListCtrl', ['$scope', 'Lessons', '$location', 'LessonDefaultValues', function($scope, Lessons, $location, LessonDefaultValues){
+.controller('LessonsListCtrl', ['$scope', 'Lessons', '$location', 'LessonDefaultValues', 'Quiz', '$rootScope', function($scope, Lessons, $location, LessonDefaultValues, Quiz, $rootScope){
   $scope.types = LessonDefaultValues.types;
   $scope.levels = LessonDefaultValues.levels;
+  $scope.lessons = Lessons.all;
 
-  Lessons.all.$bind($scope, 'lessons');
+  $scope.lessons.$on('loaded', function(){
+    angular.forEach($scope.lessons, function(item, slug){
+      if(slug.indexOf('$') == 0) return;
+      Quiz.hasUserTakenQuiz($rootScope.auth.user.uid, slug, function(result){
+        $scope.lessons[slug].quizTaken = result;
+        console.log($scope.lessons[slug].quizTaken);
+      });
+    });
+  });
+
   var temp = 'http://www.ac4d.com/blog/uploads/2011/04/jonKolko.jpg';
   $scope.getStyles = function(lesson) {
     if(lesson.picture){
