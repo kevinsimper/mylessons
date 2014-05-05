@@ -19,10 +19,17 @@ app.filter('filterObjects', function(){
     if(_.isEmpty(filters)) return items;
     var data = {};
     for(item in items){
+      var allFilters = 0
+      var allFiltersEqual = 0;
       for(filter in filters){
+        allFilters++;
         if(items[item][filter] === filters[filter]){
-          data[item] = items[item];
+          allFiltersEqual++;
         }
+      }
+      console.log(allFilters, allFiltersEqual);
+      if(allFilters === allFiltersEqual){
+        data[item] = items[item];
       }
     }
     return data;
