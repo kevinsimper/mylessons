@@ -6,6 +6,10 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'WelcomeCtrl',
       templateUrl: 'templates/welcome.html'
     })
+    .when('/about', {
+      controller: 'AboutCtrl',
+      templateUrl: 'templates/about.html'
+    })
     .when('/dashboard', {
       authRequired: true,
       controller: 'DashboardCtrl',

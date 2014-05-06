@@ -8,6 +8,10 @@ app.controller('WelcomeCtrl', ['$scope', function($scope){
 
 }])
 
+app.controller('AboutCtrl', ['$scope', function($scope){
+
+}])
+
 .controller('DashboardCtrl', ['$scope', '$firebase', 'User',
   function($scope, $firebase, User){
     User.$bind($scope, "user");
