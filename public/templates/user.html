@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-    <img src="http://graph.facebook.com/kevinsimper/picture?width=200" alt="" style="float: left; margin: 0 20px 20px 0; ">
+    <img src="" ng-src="http://graph.facebook.com/{{auth.user.thirdPartyUserData.username}}/picture?width=200"  alt="" style="float: left; margin: 0 20px 20px 0; ">
     <p>Hi {{auth.user.displayName}}, it’s truely great to have you as a user! We hope you like Wiser as much as we do.</p>
     <p>So far you have collected <strong>{{auth.user.data.pointsTotal}}</strong> points, keep it up and you are well on the way to become a master Design Thinker.</p>
     <p>Since Wiser is currently in beta we are constantly learn- ing, and your feedback is essential to our succes. We would like to get to know you a little better,
