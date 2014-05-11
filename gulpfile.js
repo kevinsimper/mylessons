@@ -4,9 +4,12 @@ var stylus = require('gulp-stylus');
 var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
 var livereload = require('gulp-livereload');
+var plumber = require('gulp-plumber');
 
 gulp.task('browserify', function() {
-  gulp.src('public/app.js').pipe(browserify({
+  gulp.src('public/app.js')
+    .pipe(plumber())
+    .pipe(browserify({
       debug: true,
       shim: {
         angular: {
