@@ -30,6 +30,12 @@
             <input type="text" class="form-control" name="type" ng-model="lesson.articleLink">
           </div>
         </div>
+        <div ng-show="lesson.type == 'book'">
+          <div class="form-group">
+            <label for="type">Link to book</label>
+            <input type="text" class="form-control" name="type" ng-model="lesson.bookLink">
+          </div>
+        </div>
         <div ng-show="lesson.type == 'video'">
           <div class="form-group">
             <label for="type">Youtube link</label>

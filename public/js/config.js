@@ -7,7 +7,8 @@ app.constant('loginRedirectPath', '/')
 app.value('LessonDefaultValues', {
   'types': [{'display': 'Video', 'value': 'video'},
             {'display': 'Article', 'value': 'article'},
-            {'display': 'Event', 'value': 'event'}],
+            {'display': 'Event', 'value': 'event'},
+            {'display': 'Book', 'value': 'book'}],
   'levels': [{'display': 'Basic', 'value': 'basic'},
              {'display': 'Medium', 'value': 'medium'},
              {'display': 'Advanced', 'value': 'advanced'}]
