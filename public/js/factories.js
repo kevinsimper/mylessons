@@ -46,8 +46,9 @@ app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
       addPointsToUser: function(user, lesson, lessonSlug, points) {
         var fbRef = $firebase(new Firebase(firebaseUrl + 'users/'));
         var userRef = fbRef.$child(user);
+        var pointsTotal = userRef.pointsTotal || 0;
         userRef.$child('quizTaken' + '/' + lessonSlug).$set(true);
-        userRef.$child('pointsTotal').$set((parseInt(userRef.pointsTotal) + parseInt(points)).toString());
+        userRef.$child('pointsTotal').$set(parseInt(pointsTotal) + parseInt(points));
         var userPointsRef = userRef.$child('points');
         userPointsRef.$add({
           points: points,
