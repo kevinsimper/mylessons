@@ -1,0 +1,1 @@
+exports.localFirebase = 'https://wiser-kevin.firebaseio.com/';

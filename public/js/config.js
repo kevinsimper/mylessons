@@ -1,7 +1,6 @@
 var app = require('./modules/app');
 var _ = require('underscore');
 
-app.value('firebaseUrl', 'https://mylessons.firebaseio.com/')
 app.constant('loginRedirectPath', '/')
 
 app.value('LessonDefaultValues', {

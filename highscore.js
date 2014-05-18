@@ -1,5 +1,7 @@
 var Firebase = require('Firebase');
-var rootRef = new Firebase('http://mylessons.firebaseio.com/');
+var localconfig = require('./localconfig');
+
+var rootRef = new Firebase(localconfig.localFirebase);
 var highscoreRef = rootRef.child('highscore');
 
 console.log('Starter HighScore worker')

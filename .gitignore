@@ -1,3 +1,4 @@
 *.log
 .DS_Store
 public/build
+localconfig.js

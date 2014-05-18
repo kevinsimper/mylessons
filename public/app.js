@@ -15,7 +15,11 @@ require('./js/routes');
 require('./js/factories');
 require('./js/controllers');
 
+var localconfig = require('../localconfig');
+
 var app = require('./js/modules/app');
+
+app.value('firebaseUrl', localconfig.localFirebase);
 
 app.run(['$rootScope', '$location', 'LoginHandler', 'User', function($rootScope, $location, LoginHandler, User) {
 

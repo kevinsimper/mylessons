@@ -1,10 +1,15 @@
+'use strict';
+var fs = require('fs');
 var gulp = require('gulp');
+var replace = require('gulp-replace');
 var browserify = require('gulp-browserify');
 var stylus = require('gulp-stylus');
 var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
 var livereload = require('gulp-livereload');
 var plumber = require('gulp-plumber');
+
+var env = process.env.NODE_ENV;
 
 gulp.task('browserify', function() {
   gulp.src('public/app.js')
@@ -29,19 +34,34 @@ gulp.task('stylus', function() {
 });
 
 gulp.task('lint', function() {
-  gulp.src('public/*.js')
+  gulp.src('*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('default', ['lint', 'browserify', 'stylus'], function() {
+gulp.task('env', function(){
+  var firebaseUrl = '';
+
+  if(typeof env === 'undefined'){
+    try {
+      var localconfig = require('localconfig');
+    } 
+    catch (e) {
+      console.log('You should define a localconfig.js, see the sample!');
+      return true;
+    }
+  } else if('production' === env){
+    firebaseUrl = 'https://wiser.firebaseio.com/';
+  } else if('staging' === env) {
+    firebaseUrl = 'https://wiser-staging.firebaseio.com/';
+  }
+  fs.writeFile('localconfig.js', 'exports.localFirebase = "' + firebaseUrl + '";');
+});
+
+gulp.task('default', ['lint', 'env', 'browserify', 'stylus'], function() {
   var server = livereload();
 
-  gulp.watch(['public/**/*.js', '!public/build/**'], ['browserify'])
-  .on('change', function(file) {
-      console.log(new Date());
-      console.log(file.path);
-    });
+  gulp.watch(['public/**/*.js', '!public/build/**'], ['browserify']);
   gulp.watch(['public/styles/**.styl'], ['stylus']);
 
   gulp.watch(['public/build/**', 'public/templates/**']).on('change', function(file) {
@@ -50,4 +70,4 @@ gulp.task('default', ['lint', 'browserify', 'stylus'], function() {
   });
 });
 
-gulp.task('build', ['browserify', 'stylus']);
+gulp.task('build', ['env', 'browserify', 'stylus']);
