@@ -55,6 +55,8 @@ gulp.task('env', function(){
   } else if('staging' === env) {
     firebaseUrl = 'https://wiser-staging.firebaseio.com/';
   }
+  console.log('ENV', env);
+  console.log('Firebase', firebaseUrl);
   fs.writeFile('localconfig.js', 'exports.localFirebase = "' + firebaseUrl + '";');
 });
 
