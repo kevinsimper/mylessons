@@ -13,11 +13,6 @@
     "url": "git://github.com/kevinsimper/mylessons.git"
   },
   "author": "Kevin Simper",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kevinsimper/mylessons/issues"
-  },
-  "homepage": "https://github.com/kevinsimper/mylessons",
   "dependencies": {
     "gulp": "^3.6.1",
     "express": "^3.5.1",
@@ -32,6 +27,7 @@
     "gulp-plumber": "^0.6.1",
     "gulp-replace": "^0.3.0",
     "gulp-stylus": "^0.1.0",
-    "gulp-uglify": "^0.2.1"
+    "gulp-uglify": "^0.2.1",
+    "jshint-stylish": "^0.2.0"
   }
 }
