@@ -10,6 +10,7 @@ var livereload = require('gulp-livereload');
 var plumber = require('gulp-plumber');
 
 var env = process.env.NODE_ENV;
+var staging = process.env.ENV;
 
 gulp.task('browserify', function() {
   gulp.src('public/app.js')
@@ -50,12 +51,14 @@ gulp.task('env', function(){
       console.log('You should define a localconfig.js, see the sample!');
       return true;
     }
-  } else if('production' === env){
+  }
+  if('production' === env){
     firebaseUrl = 'https://wiser.firebaseio.com/';
-  } else if('staging' === env) {
+  }
+  if('staging' === staging) {
     firebaseUrl = 'https://wiser-staging.firebaseio.com/';
   }
-  console.log('ENV', env);
+  console.log('ENV', env, staging);
   console.log('Firebase', firebaseUrl);
   fs.writeFile('localconfig.js', 'exports.localFirebase = "' + firebaseUrl + '";');
 });
