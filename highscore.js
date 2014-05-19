@@ -1,4 +1,4 @@
-var Firebase = require('Firebase');
+var Firebase = require('firebase');
 var localconfig = require('./localconfig');
 
 var rootRef = new Firebase(localconfig.localFirebase);
