@@ -10,11 +10,14 @@ rootRef.child('users').on('value', function(snapshot){
   var highscore = [];
   var data = snapshot.val();
   for(key in data){
-    var person = {
-      name: data[key].name,
-      points: data[key].pointsTotal
-    };
-    highscore.push(person);
+    _person = data[key];
+
+      console.log(_person.name)
+      var person = {
+        name: _person.name || 'Anonym',
+        points: _person.pointsTotal || 0
+      };
+      highscore.push(person);
   }
   highscore.sort(function(a, b){
     return b.points - a.points;
