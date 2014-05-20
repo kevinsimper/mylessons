@@ -24,7 +24,22 @@ gulp.task('browserify', function() {
         }
       }
     }))
-    // .pipe(uglify({outSourceMap: false}))
+    .pipe(gulp.dest('public/build'));
+});
+
+gulp.task('browserify:production', function() {
+  gulp.src('public/app.js')
+    .pipe(plumber())
+    .pipe(browserify({
+      debug: true,
+      shim: {
+        angular: {
+          path: 'public/vendor/angular/angular.js',
+          exports: 'angular'
+        }
+      }
+    }))
+    .pipe(uglify({outSourceMap: false}))
     .pipe(gulp.dest('public/build'));
 });
 
@@ -75,4 +90,4 @@ gulp.task('default', ['lint', 'env', 'browserify', 'stylus'], function() {
   });
 });
 
-gulp.task('build', ['env', 'browserify', 'stylus']);
+gulp.task('build', ['env', 'browserify:production', 'stylus']);
