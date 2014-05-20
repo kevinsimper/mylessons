@@ -1,0 +1,1 @@
+var resizeable = require('./resizeable');

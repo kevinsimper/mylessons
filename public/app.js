@@ -12,6 +12,7 @@ require('./vendor/angularfire/angularfire');
 
 require('./js/config');
 require('./js/routes');
+require('./js/directives/');
 require('./js/factories');
 require('./js/controllers');
 
