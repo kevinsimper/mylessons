@@ -1,16 +1,18 @@
 var angular = require('angular');
 var app = require('../modules/app');
 
-app.directive('resizable', function($window) {
-  return function($scope) {
-    $scope.initializeWindowSize = function() {
-      $scope.windowHeight = $window.innerHeight;
-      return $scope.windowWidth = $window.innerWidth;
-    };
-    $scope.initializeWindowSize();
-    return angular.element($window).bind('resize', function() {
+app.directive('resizable', ['$window', function($window) {
+  return {
+  	link: function($scope) {
+      $scope.initializeWindowSize = function() {
+        $scope.windowHeight = $window.innerHeight;
+        return $scope.windowWidth = $window.innerWidth;
+      };
       $scope.initializeWindowSize();
-      return $scope.$apply();
-    });
+      return angular.element($window).bind('resize', function() {
+        $scope.initializeWindowSize();
+        return $scope.$apply();
+      });
+    }
   };
-});
+}]);
