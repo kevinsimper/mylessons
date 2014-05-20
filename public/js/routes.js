@@ -35,6 +35,11 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'EditLessonCtrl',
       templateUrl: 'templates/editlesson.html'
     })
+    .when('/lessons/:lessonid/view', {
+      authRequired: true,
+      controller: 'ViewLessonCtrl',
+      templateUrl: 'templates/viewlesson.html'
+    })
     .when('/lessons', {
       authRequired: true,
       controller: 'LessonsListCtrl',

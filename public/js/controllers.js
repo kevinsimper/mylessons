@@ -1,8 +1,11 @@
 var angular = require('angular');
 var app = require('./modules/app');
+
+//require controllers
 var LessonCtrl = require('./controllers/LessonCtrl')
 var LessonListCtrl = require('./controllers/LessonListCtrl')
 var EditLessonCtrl = require('./controllers/EditLessonCtrl')
+var ViewLessonCtrl = require('./controllers/ViewLessonCtrl')
 
 app.controller('WelcomeCtrl', ['$scope', function($scope){
 
