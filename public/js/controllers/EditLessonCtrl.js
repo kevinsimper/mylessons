@@ -9,10 +9,9 @@ var app = require('../modules/app')
   lesson.$bind($scope, 'lesson');
 
   $scope.removeQuestion = function(name) {
-    console.log(name)
     var question = lesson.$child('quiz/questions').$remove(name);
-    // console.log($scope.lesson.quiz.questions.indexOf(lesson));
   };
+
   $scope.addQuestion = function() {
     var questions = lesson.$child('quiz/questions');
     var question = {
