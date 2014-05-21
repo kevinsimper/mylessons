@@ -12,17 +12,23 @@ var plumber = require('gulp-plumber');
 var env = process.env.NODE_ENV;
 var staging = process.env.ENV;
 
+var shim = {
+  angular: {
+    path: 'public/vendor/angular/angular.js',
+    exports: 'angular'
+  },
+  jquery: {
+    path: 'public/vendor/jquery/jquery-2.1.0.js',
+    exports: 'jQuery'
+  }
+};
+
 gulp.task('browserify:debug', function() {
   gulp.src('public/app.js')
     .pipe(plumber())
     .pipe(browserify({
       debug: true,
-      shim: {
-        angular: {
-          path: 'public/vendor/angular/angular.js',
-          exports: 'angular'
-        }
-      }
+      shim: shim
     }))
     .pipe(gulp.dest('public/build'));
 });
@@ -32,12 +38,7 @@ gulp.task('browserify:production', function() {
     .pipe(plumber())
     .pipe(browserify({
       debug: true,
-      shim: {
-        angular: {
-          path: 'public/vendor/angular/angular.js',
-          exports: 'angular'
-        }
-      }
+      shim: shim
     }))
     .pipe(uglify({outSourceMap: false}))
     .pipe(gulp.dest('public/build'));

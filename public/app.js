@@ -1,5 +1,5 @@
 // Frontend libraries
-require('./vendor/jquery/jquery-2.1.0');
+require('jquery');
 require('./vendor/bootstrap/js/bootstrap.js');
 
 // Core libraries
