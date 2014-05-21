@@ -12,7 +12,7 @@ var plumber = require('gulp-plumber');
 var env = process.env.NODE_ENV;
 var staging = process.env.ENV;
 
-gulp.task('browserify', function() {
+gulp.task('browserify:debug', function() {
   gulp.src('public/app.js')
     .pipe(plumber())
     .pipe(browserify({
@@ -50,7 +50,7 @@ gulp.task('stylus', function() {
 });
 
 gulp.task('lint', function() {
-  gulp.src('*.js')
+  gulp.src(['*.js', '**/*.js']  )
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
@@ -60,28 +60,31 @@ gulp.task('env', function(){
 
   if(typeof env === 'undefined'){
     try {
-      var localconfig = require('localconfig');
+      var localconfig = require('./localconfig');
+      console.log('local', localconfig);
+      firebaseUrl = localconfig.localFirebase;
     } 
     catch (e) {
       console.log('You should define a localconfig.js, see the sample!');
       return true;
     }
-  }
-  if('production' === env){
-    firebaseUrl = 'https://wiser.firebaseio.com/';
-  }
-  if('staging' === staging) {
-    firebaseUrl = 'https://wiser-staging.firebaseio.com/';
+  } else {
+    if('production' === env){
+      firebaseUrl = 'https://wiser.firebaseio.com/';
+    }
+    if('staging' === staging) {
+      firebaseUrl = 'https://wiser-staging.firebaseio.com/';
+    }
+    fs.writeFile('localconfig.js', 'exports.localFirebase = "' + firebaseUrl + '";');
   }
   console.log('ENV', env, staging);
   console.log('Firebase', firebaseUrl);
-  fs.writeFile('localconfig.js', 'exports.localFirebase = "' + firebaseUrl + '";');
 });
 
-gulp.task('default', ['lint', 'env', 'browserify', 'stylus'], function() {
+gulp.task('default', ['lint', 'env', 'browserify:debug', 'stylus'], function() {
   var server = livereload();
 
-  gulp.watch(['public/**/*.js', '!public/build/**'], ['browserify']);
+  gulp.watch(['public/**/*.js', '!public/build/**'], ['browserify:debug']);
   gulp.watch(['public/styles/**.styl'], ['stylus']);
 
   gulp.watch(['public/build/**', 'public/templates/**']).on('change', function(file) {
@@ -90,4 +93,9 @@ gulp.task('default', ['lint', 'env', 'browserify', 'stylus'], function() {
   });
 });
 
-gulp.task('build', ['env', 'browserify:production', 'stylus']);
+if('staging' === staging || 'production' !== env) {
+  gulp.task('build', ['env', 'browserify:debug', 'stylus']);
+} 
+if('production' === env) {
+  gulp.task('build', ['env', 'browserify:production', 'stylus']);
+}
