@@ -7,8 +7,7 @@ app.factory('LoginHandler',
       auth: {}
     }
     var ref = new Firebase(firebaseUrl);
-    data.auth = $firebaseSimpleLogin(ref);
-    $rootScope.auth = $firebaseSimpleLogin(ref);
+    $rootScope.auth = data.auth = $firebaseSimpleLogin(ref);
 
     return $rootScope.auth;
 

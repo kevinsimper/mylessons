@@ -24,13 +24,24 @@ app.value('firebaseUrl', localconfig.localFirebase);
 
 app.run(['$rootScope', '$location', 'LoginHandler', 'User', function($rootScope, $location, LoginHandler, User) {
   $rootScope.$on("$firebaseSimpleLogin:login", function(e, user) {
-    if(LoginHandler.user !== null){
-      var userData = User.$child(user.uid);
-      LoginHandler.user.data = userData;
+    var userData = User.$child(user.uid);
+    LoginHandler.user.data = userData;
 
-      userData.$update({name: LoginHandler.user.displayName});
 
+    userData.$update({
+      name: LoginHandler.user.displayName,
+      loginType: LoginHandler.user.provider,
+      facebookUsername: LoginHandler.user.thirdPartyUserData.username,
+      lastLogin: Date.now()
+    });
+
+    // If first time log in
+    if(!userData.pointsTotal){
+      userData.$update({
+        pointsTotal: 0
+      });
     }
+
   });
 
   // register listener to watch route changes
