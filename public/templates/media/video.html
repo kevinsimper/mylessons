@@ -8,6 +8,14 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
+        <td ng-hide="likeStatus">
+          <ul class="likemenu">
+            <li><button class="btn btn-default btn-sm" ng-click="like()"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button></li>
+            <li><button class="btn btn-default btn-sm" ng-click="dislike()"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button></li>
+          </ul>
+        </td>
+        <td ng-show="likeStatus">You have {{likeStatus}}d</td>
+        <td>{{lesson.likesCount}} | {{lesson.dislikesCount}}</td>
         <td><strong>Type</strong></td>
         <td>{{lesson.type}}</td>
         <td><strong>Sværhedsgraden</strong></td>
