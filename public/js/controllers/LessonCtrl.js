@@ -1,24 +1,38 @@
 var angular = require('angular');
 var app = require('../modules/app')
 
-.controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', '$rootScope', '$location', '$sce', 'Quiz', function($scope, $routeParams, Lessons, $rootScope, $location, $sce, Quiz){
-  $scope.id = $routeParams.lessonid;
-  Lessons.choose($scope.id).$bind($scope, 'lesson').then(function(){
-    $scope.userQuiz = angular.copy($scope.lesson.quiz);
+.controller('LessonCtrl', ['$scope', '$routeParams', 'Lessons', '$rootScope', '$location', '$sce', 'Quiz', 'User', function($scope, $routeParams, Lessons, $rootScope, $location, $sce, Quiz, User){
+  var userRef = {};
+  var lesson = {};
+  $rootScope.$watch('auth.user', function(){
+    var user = $rootScope.auth.user;
+    if(user !== null){
+      userRef = User.$child(user.uid);
+      userRef.$bind($scope, "user").then(function(){
+        $scope.id = $routeParams.lessonid;
+        lesson = Lessons.choose($scope.id);
+        lesson.$bind($scope, 'lesson').then(function(){
+          $scope.userQuiz = angular.copy($scope.lesson.quiz);
 
-    // Set the URL if the lesson is a video
-    if($scope.lesson.type === 'video'){
-      $scope.setYoutubeEmbedUrl();
-    }
-    if($scope.lesson.type === 'event'){
-      $scope.hideQuiz = true;
-    }
+          // Set the URL if the lesson is a video
+          if($scope.lesson.type === 'video'){
+            $scope.setYoutubeEmbedUrl();
+          }
+          if($scope.lesson.type === 'event'){
+            $scope.hideQuiz = true;
+          }
 
-    Quiz.hasUserTakenQuiz($rootScope.auth.user.uid, $scope.id, function(result){
-      console.log(result);
-      $scope.quizTaken = result;
-    });
+          Quiz.hasUserTakenQuiz($rootScope.auth.user.uid, $scope.id, function(result){
+            console.log(result);
+            $scope.quizTaken = result;
+          });
+
+          checkLike();
+        });
+      });
+    }
   });
+
 
 
   $scope.getTemplateUrl = function(type) {
@@ -27,6 +41,44 @@ var app = require('../modules/app')
     } else {
       return '';
     }
+  };
+
+  function registerLike(type) {
+    userRef
+      .$child('likes')
+      .$child($scope.lesson.slug)
+      .$set({
+        type: type, 
+        name: $scope.lesson.name 
+      });
+  }
+
+  function checkLike() {
+    var likestatus = userRef
+      .$child('likes')
+      .$child($scope.lesson.slug);
+
+    $scope.likeStatus = likestatus.type;
+    return likestatus.type;
+  }
+
+  $scope.like = function() {
+    if(!!checkLike()) return false;
+    console.log('like');
+    lesson.$child('likes').$add({uid: $rootScope.auth.user.uid});
+    var likes = $scope.lesson.likesCount || 0;
+    lesson.$child('likesCount').$set(parseInt(likes) + 1);
+    registerLike('like');
+    checkLike();
+  };
+  $scope.dislike = function() {
+    if(!!checkLike()) return false;
+    console.log('dislike');
+    lesson.$child('dislikes').$add({uid: $rootScope.auth.user.uid});
+    var likes = $scope.lesson.dislikesCount || 0;
+    lesson.$child('dislikesCount').$set(parseInt(likes) + 1);
+    registerLike('dislike');
+    checkLike();
   };
 
   $scope.setYoutubeEmbedUrl = function() {
@@ -88,5 +140,7 @@ var app = require('../modules/app')
     }
 
   };
+
+
 
 }])
