@@ -16,6 +16,7 @@ rootRef.child('users').on('value', function(snapshot){
     var person = {
       name: _person.name || 'Anonym',
       points: _person.pointsTotal || 0,
+      uid: key
     };
 
     if(_person.facebookUsername){

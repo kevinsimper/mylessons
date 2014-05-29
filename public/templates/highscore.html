@@ -22,8 +22,10 @@
               {{person.points}}
             </td>
             <td class="person">
-              <img ng-src="{{person.picture}}" alt="">
-              {{person.name}}
+              <a href="#" ng-href="#/profile/{{person.uid}}">
+                <img ng-src="{{person.picture}}" alt="">
+                {{person.name}}
+              </a>
             </td>
           </tr>
         </tbody>
