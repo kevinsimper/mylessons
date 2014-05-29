@@ -15,8 +15,16 @@ rootRef.child('users').on('value', function(snapshot){
       console.log(_person.name)
       var person = {
         name: _person.name || 'Anonym',
-        points: _person.pointsTotal || 0
+        points: _person.pointsTotal || 0,
       };
+      
+      if(_person.facebookUsername){
+        person.picture = 'http://graph.facebook.com/' + 
+                  _person.facebookUsername + 
+                  '/picture';
+      } else {
+        person.picture = '';
+      }
       highscore.push(person);
   }
   highscore.sort(function(a, b){
