@@ -6,6 +6,8 @@ var app = require('../modules/app')
   $scope.levels = LessonDefaultValues.levels;
   $scope.lessons = Lessons.all;
 
+  $scope.showType = 'blocks';
+
   $scope.lessons.$on('loaded', function(){
     angular.forEach($scope.lessons, function(item, slug){
       if(slug.indexOf('$') == 0) return;

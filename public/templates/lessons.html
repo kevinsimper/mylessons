@@ -2,7 +2,12 @@
 </div>
 <div class="container">
   <div class="page-header">
-    <h1>Lessons</h1>
+    <h1>Lessons 
+      <div style="float: right">
+        <span class="glyphicon glyphicon-th" ng-click="showType = 'blocks'"></span>
+        <span class="glyphicon glyphicon-list" ng-click="showType = 'table'"></span>
+      </div>
+    </h1>
   </div>
   <div class="row filter">
     <div class="col-md-12">
@@ -20,10 +25,10 @@
           </select>
         </div>
         <div class="form-group">
-          <label><input type="checkbox" ng-model="search.quizTaken" class="checkbox" ng-init="search.quizTaken = false"> Vis gennemførte</label>
+          <label><input type="checkbox" ng-model="search.quizTaken" class="checkbox"> Vis gennemførte</label>
           <label><input type="checkbox" ng-checked="!search.quizTaken" class="checkbox" ng-click="search.quizTaken = false"> Skjul gennemførte</label>
         </div>
-        <div class="btn btn-default btn-sm" ng-click="search = {quizTaken: false}">
+        <div class="btn btn-default btn-sm" ng-click="search = {}">
           <span class="glyphicon glyphicon-remove"></span>
           Reset filter
         </div>
@@ -31,7 +36,7 @@
     </div>
   </div>
   <div class="lessons">
-    <div ng-repeat="(slug, lesson) in lessons | filterObjects:search" ng-click="goToLesson(slug, lesson)" ng-style="getStyles(lesson)" class="lesson">
+    <div ng-repeat="(slug, lesson) in lessons | filterObjects:search" ng-click="goToLesson(slug, lesson)" ng-style="getStyles(lesson)" ng-show="showType == 'blocks'" class="lesson">
       <div class="info">
         <div><strong>{{shortenLessonname(lesson.name)}}</strong></div>
         <div class="lessonDetails">
@@ -43,5 +48,31 @@
         </div>
       </div>
     </div>
+    <table class="table table-striped" ng-show="showType == 'table'">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Level</th>
+          <th>Points</th>
+          <th>Time</th>
+          <th>Taken</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(slug, lesson) in lessons | filterObjects:search" ng-click="goToLesson(slug, lesson)">
+          <td>{{lesson.name}}</td>
+          <td>{{lesson.type}}</td>
+          <td>{{lesson.level}}</td>
+          <td>{{lesson.quiz.points}}</td>
+          <td>{{lesson.time}}</td>
+          <td>
+            <span ng-show="lesson.quizTaken">
+              <span class="glyphicon glyphicon-ok" style="color: green;"></span>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
