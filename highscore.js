@@ -32,6 +32,7 @@ rootRef.child('users').on('value', function(snapshot){
   highscore.sort(function(a, b){
     return b.points - a.points;
   });
+  highscore = highscore.slice(0, 10);
   highscoreRef.set(highscore);
   console.log('Highscore updated');
 });
