@@ -9,23 +9,25 @@ console.log('Starter HighScore worker')
 rootRef.child('users').on('value', function(snapshot){
   var highscore = [];
   var data = snapshot.val();
+  var refName = snapshot.name();
   for(key in data){
     _person = data[key];
 
-      console.log(_person.name)
-      var person = {
-        name: _person.name || 'Anonym',
-        points: _person.pointsTotal || 0,
-      };
-      
-      if(_person.facebookUsername){
-        person.picture = 'http://graph.facebook.com/' + 
-                  _person.facebookUsername + 
-                  '/picture';
-      } else {
-        person.picture = '';
-      }
-      highscore.push(person);
+    var person = {
+      name: _person.name || 'Anonym',
+      points: _person.pointsTotal || 0,
+    };
+
+    if(_person.facebookUsername){
+      person.picture = 'http://graph.facebook.com/' + 
+                _person.facebookUsername + 
+                '/picture';
+    } else {
+      person.picture = 'http://graph.facebook.com/' + 
+        key.split(':')[1] +
+        '/picture';
+    }
+    highscore.push(person);
   }
   highscore.sort(function(a, b){
     return b.points - a.points;
