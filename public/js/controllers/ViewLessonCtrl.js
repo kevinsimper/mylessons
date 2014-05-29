@@ -6,11 +6,22 @@ app.controller('ViewLessonCtrl', ['$scope', '$rootScope', '$routeParams', '$loca
 	var lessonId = $routeParams.lessonid;
 	$scope.lesson = Lessons.choose(lessonId);
 	$scope.lesson.$on('loaded', function(){
-		$scope.iframeUrl = $sce.trustAsResourceUrl($scope.lesson.articleLink);
+		var link = '';
+		if(typeof $scope.lesson.bookLink !== 'undefined' && $scope.lesson.bookLink) {
+			link = $scope.lesson.bookLink;
+		}
+		if(typeof $scope.lesson.articleLink !== 'undefined' && $scope.lesson.articleLink) {
+			link = $scope.lesson.articleLink;
+		}
+		$scope.iframeUrl = $sce.trustAsResourceUrl(link);
 	});
 
 	$scope.goBackToLesson = function() {
 		$location.path('/lessons/' + lessonId);
+	};
+
+	$scope.frameLoaded = function() {
+		console.log('iframe');
 	};
 
 	$scope.$on('$destroy', function() {
