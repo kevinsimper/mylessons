@@ -36,7 +36,7 @@ app.run(['$rootScope', '$location', 'LoginHandler', 'User', function($rootScope,
     });
 
     // If first time log in
-    if(!userData.pointsTotal){
+    if(typeof userData.pointsTotal === 'undefined'){
       userData.$update({
         pointsTotal: 0
       });
