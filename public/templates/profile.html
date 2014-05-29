@@ -1,0 +1,38 @@
+<div class="container profile">
+  <div class="row">
+    <div class="col-md-3">
+        <img src="" ng-src="http://graph.facebook.com/{{profilePicture}}/picture?width=250"  alt="" style="width: 250px; margin: 0 20px 120px 0; ">
+    </div>
+    <div class="col-md-6">
+        <h2>{{user.name}}</h2>
+        <div><span>{{user.pointsTotal}}</span> points optjent</div>
+        <div class="idamember">
+            <span ng-show="user.idaMember">Is a member of IDA</span>
+        </div>
+        <div class="points">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Navn</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="lesson in user.points">
+                    <tr>
+                        <td>{{$index + 1}}</td>
+                        <td>{{lesson.name}}</td>
+                        <td>{{lesson.points}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-show="user.bio">
+            <strong>Bio:</strong><br>
+            {{user.bio}}
+        </div>
+    </div>
+    </div>
+  </div>
+ 
+</div>
