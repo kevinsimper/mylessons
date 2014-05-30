@@ -25,10 +25,13 @@
           </select>
         </div>
         <div class="form-group">
-          <label><input type="checkbox" ng-model="search.quizTaken" class="checkbox"> Vis gennemførte</label>
-          <label><input type="checkbox" ng-checked="!search.quizTaken" class="checkbox" ng-click="search.quizTaken = false"> Skjul gennemførte</label>
+          <label>Taken</label>
+          <select ng-model="showTaken">
+            <option>Show</option>
+            <option>Hide</option>
+          </select>
         </div>
-        <div class="btn btn-default btn-sm" ng-click="search = {}">
+        <div class="btn btn-default btn-sm" ng-click="resetSearch()">
           <span class="glyphicon glyphicon-remove"></span>
           Reset filter
         </div>

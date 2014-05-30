@@ -17,6 +17,20 @@ var app = require('../modules/app')
     });
   });
 
+  $scope.$watch('showTaken', function() {
+    if(typeof $scope.search == 'undefined') $scope.search = {};
+
+    if($scope.showTaken === 'Show'){
+      $scope.search.quizTaken = true;
+    } else if ($scope.showTaken === 'Hide') {
+      $scope.search.quizTaken = false;
+    }
+  });
+  $scope.resetSearch = function() {
+    $scope.search = {};
+    $scope.showTaken = '';
+  };
+
   var temp = 'http://www.ac4d.com/blog/uploads/2011/04/jonKolko.jpg';
   $scope.getStyles = function(lesson) {
     if(lesson.picture){
