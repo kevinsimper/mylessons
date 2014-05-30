@@ -29,12 +29,12 @@
           <label for="name">Are you a member of IDA - The Danish Society of Engineers?</label>
           <div class="radio">
             <label>
-              <input type="radio" value="true" ng-model="user.idaMember"> Ja
+              <input type="radio" value="true" ng-model="user.idaMember"> Yes
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" value="false" ng-model="user.idaMember"> Nej
+              <input type="radio" value="false" ng-model="user.idaMember"> No
             </label>
           </div>
         </div>
@@ -42,6 +42,27 @@
         <div class="form-group">
           <label for="bio">What are your interests, profession and formal education?</label>
           <textarea name="bio" ng-model="user.bio" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="found">How did you find out about Wiser?</label>
+          <textarea name="found" ng-model="user.found" class="form-control" rows="3"></textarea>
+        </div>
+
+        <h3>Notifications</h3>
+
+        <div class="form-group">
+          <label for="name">May we send you email notifications?</label>
+          <div class="radio">
+            <label>
+              <input type="radio" value="true" ng-model="user.notifications"> Yes
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" value="false" ng-model="user.notifications"> No
+            </label>
+          </div>
         </div>
 
         <a class="btn btn-primary" ng-click="submitted = true">Gem</a>
