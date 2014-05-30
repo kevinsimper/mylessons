@@ -12,6 +12,13 @@
       </div> -->
       <h1>{{lesson.name}}</h1>
 
+      <div class="addedby">
+        Added by 
+        <div class="name">
+          <img ng-src="http://graph.facebook.com/larshaukohl/picture" alt="" src="http://graph.facebook.com/larshaukohl/picture"> Lars Haukohl
+        </div>
+      </div>
+
       <div ng-include="getTemplateUrl(lesson.type)"></div>
 
 
