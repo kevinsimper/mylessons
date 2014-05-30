@@ -14,21 +14,23 @@
 
       <div ng-include="getTemplateUrl(lesson.type)"></div>
 
-      <hr>
 
       <div class="alert alert-info" ng-show="quizTaken">
         You have already taken this quiz!
       </div>
 
-      <div class="panel panel-default" ng-hide="quizTaken || hideQuiz">
-        <div class="panel-heading">
-          <h3 class="panel-title">Quiz</h3>
+      <div class="quiz" ng-hide="quizTaken || hideQuiz">
+        <div class="quiz-header">
+          <h2>
+            <span>Quiz</span>
+          </h2>
+          <hr>
         </div>
         <div class="panel-body">
           <form ng-submit="submitQuiz()">
             <div class="row">
               <div class="col-md-12" ng-repeat="(id, question) in userQuiz.questions">
-                <h4>{{question.question}}</h4>
+                <h4 class="question-header">{{question.question}}</h4>
                   <div class="radio" ng-repeat="(answerId, answer) in question.answers">
                     <label>
                       <span>{{userAnswer}}</span>

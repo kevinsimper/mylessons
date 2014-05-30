@@ -8,20 +8,17 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
-        <td ng-hide="likeStatus">
-          <ul class="likemenu">
+        <td>
+          <ul class="likemenu" ng-hide="likeStatus">
             <li><button class="btn btn-default btn-sm" ng-click="like()"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button></li>
             <li><button class="btn btn-default btn-sm" ng-click="dislike()"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button></li>
           </ul>
+          <span ng-show="likeStatus">You have {{likeStatus}}d</span> 
+          <span>{{lesson.likesCount + 0}} <span class="glyphicon glyphicon-thumbs-up"></span> | {{lesson.dislikesCount + 0}} <span class="glyphicon glyphicon-thumbs-down"></span></span>
         </td>
-        <td ng-show="likeStatus">You have {{likeStatus}}d</td>
-        <td>{{lesson.likesCount}} | {{lesson.dislikesCount}}</td>
-        <td><strong>Type</strong></td>
-        <td>{{lesson.type}}</td>
-        <td><strong>Level</strong></td>
-        <td>{{lesson.level}}</td>
-        <td><strong>Points</strong></td>
-        <td>{{lesson.quiz.points}}</td>
+        <td><strong>Type</strong> <span>{{lesson.type}}</span></td>
+        <td><strong>Level</strong> <span>{{lesson.level}}</span></td>
+        <td><strong>Points</strong> <span>{{lesson.quiz.points}}</span></td>
       </tr>
     </table>
   </div>
