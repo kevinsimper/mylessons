@@ -60,6 +60,11 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'ProfileCtrl',
       templateUrl: 'templates/profile.html'
     })
+    .when('/tutorial', {
+      authRequired: true,
+      controller: 'TutorialCtrl',
+      templateUrl: 'templates/tutorial.html'
+    })
     .otherwise({
       redirectTo: '/fail'
     });

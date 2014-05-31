@@ -7,6 +7,7 @@ var LessonListCtrl = require('./controllers/LessonListCtrl')
 var EditLessonCtrl = require('./controllers/EditLessonCtrl')
 var ViewLessonCtrl = require('./controllers/ViewLessonCtrl')
 var ProfileCtrl = require('./controllers/ProfileCtrl')
+var TutorialCtrl = require('./controllers/TutorialCtrl')
 
 app.controller('WelcomeCtrl', ['$scope', function($scope){
 
