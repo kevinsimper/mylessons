@@ -1,7 +1,7 @@
 var app = require('./modules/app');
 var _ = require('underscore');
 
-app.constant('loginRedirectPath', '/')
+app.constant('loginRedirectPath', '/');
 
 app.value('LessonDefaultValues', {
   'types': [{'display': 'Video', 'value': 'video'},
@@ -11,7 +11,7 @@ app.value('LessonDefaultValues', {
   'levels': [{'display': 'Basic', 'value': 'basic'},
              {'display': 'Medium', 'value': 'medium'},
              {'display': 'Advanced', 'value': 'advanced'}]
-})
+});
 
 
 app.filter('filterObjects', function(){
@@ -19,7 +19,7 @@ app.filter('filterObjects', function(){
     if(_.isEmpty(filters)) return items;
     var data = {};
     for(var item in items){
-      var allFilters = 0
+      var allFilters = 0;
       var allFiltersEqual = 0;
       for(var filter in filters){
         allFilters++;

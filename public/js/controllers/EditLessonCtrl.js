@@ -27,4 +27,4 @@ var app = require('../modules/app')
     });
   };
 
-}])
+}]);
