@@ -82,7 +82,7 @@ var app = require('../modules/app')
   };
 
   $scope.setYoutubeEmbedUrl = function() {
-    var youtubeData = $scope.lesson.youtubelink.split('v=')
+    var youtubeData = $scope.lesson.youtubelink.split('v=');
     $scope.youtubeEmbedUrl = $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + youtubeData[1]);
   };
 
@@ -140,7 +140,4 @@ var app = require('../modules/app')
     }
 
   };
-
-
-
-}])
+}]);

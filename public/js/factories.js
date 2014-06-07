@@ -5,13 +5,13 @@ app.factory('LoginHandler',
   function($firebaseSimpleLogin, firebaseUrl, $rootScope){
     var data = {
       auth: {}
-    }
+    };
     var ref = new Firebase(firebaseUrl);
     $rootScope.auth = data.auth = $firebaseSimpleLogin(ref);
 
     return $rootScope.auth;
 
-}])
+}]);
 
 app.factory('Lessons', ['$firebase', 'firebaseUrl',
   function($firebase, firebaseUrl) {
@@ -26,17 +26,17 @@ app.factory('Lessons', ['$firebase', 'firebaseUrl',
         return lessens.$remove(id);
       }
     };
-}])
+}]);
 
 app.factory('User', ['$firebase', 'firebaseUrl', '$rootScope',
   function($firebase, firebaseUrl, $rootScope) {
     return $firebase(new Firebase(firebaseUrl + 'users/'));
-}])
+}]);
 
 app.factory('Highscore', ['$firebase', 'firebaseUrl', '$rootScope',
   function($firebase, firebaseUrl, $rootScope) {
     return $firebase(new Firebase(firebaseUrl + 'highscore/'));
-}])
+}]);
 
 app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
   function($firebase, firebaseUrl, $rootScope) {
@@ -62,11 +62,11 @@ app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
         var quizTakenRef = userRef.$child('quizTaken' + '/' + lessonSlug);
         quizTakenRef.$on("loaded", function(){
           var result = false;
-          if(quizTakenRef.$value == true){
+          if(quizTakenRef.$value === true){
             result = true;
           }
           callback(result);
         });
       }
     };
-}])
+}]);

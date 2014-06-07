@@ -2,16 +2,16 @@ var angular = require('angular');
 var app = require('./modules/app');
 
 //require controllers
-var LessonCtrl = require('./controllers/LessonCtrl')
-var LessonListCtrl = require('./controllers/LessonListCtrl')
-var EditLessonCtrl = require('./controllers/EditLessonCtrl')
-var ViewLessonCtrl = require('./controllers/ViewLessonCtrl')
-var ProfileCtrl = require('./controllers/ProfileCtrl')
-var TutorialCtrl = require('./controllers/TutorialCtrl')
+var LessonCtrl = require('./controllers/LessonCtrl');
+var LessonListCtrl = require('./controllers/LessonListCtrl');
+var EditLessonCtrl = require('./controllers/EditLessonCtrl');
+var ViewLessonCtrl = require('./controllers/ViewLessonCtrl');
+var ProfileCtrl = require('./controllers/ProfileCtrl');
+var TutorialCtrl = require('./controllers/TutorialCtrl');
 
 app.controller('WelcomeCtrl', ['$scope', function($scope){
 
-}])
+}]);
 
 app.controller('AboutCtrl', ['$scope', function($scope){
 
@@ -59,4 +59,4 @@ app.controller('AboutCtrl', ['$scope', function($scope){
     $location.path('/lessons/' + $scope.lesson.slug);
   };
 
-}])
+}]);

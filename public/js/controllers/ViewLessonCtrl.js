@@ -28,4 +28,4 @@ app.controller('ViewLessonCtrl', ['$scope', '$rootScope', '$routeParams', '$loca
 		$rootScope.hideNavigation = false;
 	});
 
-}])
+}]);
