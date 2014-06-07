@@ -6,7 +6,7 @@ app.directive('resizable', ['$window', function($window) {
   	link: function($scope) {
       $scope.initializeWindowSize = function() {
         $scope.windowHeight = $window.innerHeight;
-        return $scope.windowWidth = $window.innerWidth;
+        $scope.windowWidth = $window.innerWidth;
       };
       $scope.initializeWindowSize();
       return angular.element($window).bind('resize', function() {

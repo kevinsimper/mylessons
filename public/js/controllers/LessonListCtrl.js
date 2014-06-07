@@ -10,7 +10,7 @@ var app = require('../modules/app')
 
   $scope.lessons.$on('loaded', function(){
     angular.forEach($scope.lessons, function(item, slug){
-      if(slug.indexOf('$') == 0) return;
+      if(slug.indexOf('$') === 0) return;
       Quiz.hasUserTakenQuiz($rootScope.auth.user.uid, slug, function(result){
         $scope.lessons[slug].quizTaken = result;
       });
@@ -59,4 +59,4 @@ var app = require('../modules/app')
     }
   };
 
-}])
+}]);

@@ -51,7 +51,7 @@ gulp.task('stylus', function() {
 });
 
 gulp.task('lint', function() {
-  gulp.src(['*.js', '**/*.js']  )
+  gulp.src(['public/**/*.js', '!public/vendor/**', '!public/build/*.js']  )
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
