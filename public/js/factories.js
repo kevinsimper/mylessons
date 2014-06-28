@@ -67,6 +67,19 @@ app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
           }
           callback(result);
         });
+      },
+      addCustomPointsToUser: function(user, points, reason) {
+        var fbRef = $firebase(new Firebase(firebaseUrl + 'users/'));
+        var userRef = fbRef.$child(user);
+        var pointsTotal = userRef.pointsTotal || 0;
+        userRef.$child('pointsTotal').$set(parseInt(pointsTotal) + parseInt(points));
+        var userPointsRef = userRef.$child('points');
+        userPointsRef.$add({
+          points: points,
+          slug: reason,
+          name: reason
+        });
+        return userPointsRef;
       }
     };
 }]);

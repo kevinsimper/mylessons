@@ -1,1 +1,152 @@
-tutorial.html
+<div class="container" id="tutorial">
+  <div ng-show="page == 1">
+    <h1 class="text-center">Introduction to Wiser</h1>
+    <p class="text-center h4">Use 2-minutes to learn the basic of Wiser</p>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <img src="http://placehold.it/585x300" class="img-responsive" alt="">
+      </div>
+    </div>
+    <div style="margin: 20px auto;width: 320px;">
+      <button class="btn btn-lg btn-primary" ng-click="goToPage(2)">Show me the tour</button>
+      <button ng-click="takeMeAway()" class="btn btn-default">I don't want to</button>
+    </div>
+  </div>
+  <div ng-show="page == 2" class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1 class="text-center">Wiser is all the good content that you find online about<br/>design thinking</h1>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+      <img src="http://placehold.it/1000x500" class="img-responsive" alt="">
+    </div>
+    <div class="col-md-8 col-md-offset-2" style="text-align: center;">
+      <h3>A lesson contains of a:</h3>
+      <table>
+        <tr>
+          <td>introduction</td>
+          <td>time estimate</td>
+          <td>a link</td>
+          <td>and a quiz</td>
+        </tr>
+        <tr>
+          <td><img src="http://placehold.it/1000x500" class="img-responsive" alt=""></td>
+          <td><img src="http://placehold.it/1000x500" class="img-responsive" alt=""></td>
+          <td><img src="http://placehold.it/1000x500" class="img-responsive" alt=""></td>
+          <td><img src="http://placehold.it/1000x500" class="img-responsive" alt=""></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2">
+      <h3 style="text-align: center">That is because you get points for every quiz that you take and which you answers correct.</h3>
+      <hr>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2">
+      <h3>And you can use your points to:</h3>
+      <table>
+        <tr>
+          <td><h4>get access to special courses</h4></td>
+          <td><img src="http://placehold.it/800x300" class="img-responsive" alt=""></td>
+        </tr>
+        <tr>
+          <td><h4>win cool prizes</h4></td>
+          <td><img src="http://placehold.it/800x300" class="img-responsive" alt=""></td>
+        </tr>
+      </table>
+    </div>
+  
+    <div class="col-md-8 col-md-offset-2">
+      <center style="margin: 20px 0">
+        <button class="btn btn-primary btn-lg" ng-click="goToPage(3)">Take me further!</button>
+      </center>
+    </div>
+  </div>
+  <div ng-show="page == 3" class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h2><center>Take this quiz and earn your first points</center></h2>
+
+      <img src="http://placehold.it/1000x350" class="img-responsive" alt="" style="margin-bottom: 20px">
+
+      <form>
+        <div class="form-group">
+          <label for="">What kind of media can you find on Wiser?</label>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="quiz.one" value="1"> Only books and whitepapers
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="quiz.one" value="2"> Only online medias
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="quiz.one" value="3"> Both books and online medias
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">What can you use your points to?</label>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="quiz.two" value="1"> Get free cake
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="quiz.two" value="2"> Get access to special events and earn prizes
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="quiz.two" value="3"> Earn online internet points
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">Why should you use Wiser?</label>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="quiz.three" value="1"> To learn more about Design thinking
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="quiz.three" value="2"> Find online videos of cats
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="quiz.three" value="3"> Find new things about Celebrities
+            </label>
+          </div>
+        </div>
+
+        <center>
+          <div class="alert alert-info" role="alert" ng-show="quizMsg">
+            {{quizMsg}}
+          </div>
+          <div class="alert alert-success" role="alert" ng-show="correctMsg">
+            {{correctMsg}}
+          </div>
+          <div class="alert alert-warning" role="alert" ng-show="failedMsg">
+            {{failedMsg}}
+          </div>
+          <button class="btn btn-primary btn-lg" 
+                  ng-click="takeQuiz()" 
+                  ng-hide="correctMsg">
+            Check my answers and gimme my points!
+          </button>
+          <button class="btn btn-info btn-lg" ng-click="goToHomepage()" ng-show="correctMsg">
+            Go and explorer more of Wiser!
+          </button>
+        </center>
+      </form>
+
+    </div>
+  </div>
+</div>
