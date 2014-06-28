@@ -3,7 +3,7 @@ var app = require('../modules/app');
 var moment = require('moment');
 
 app.controller('TutorialCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'User', 'Quiz', function($scope, $rootScope, $routeParams, $location, User, Quiz){
-	$scope.page = 3;
+	$scope.page = 1;
 	$scope.quiz = {};
 
 	$scope.takeMeAway = function() {
