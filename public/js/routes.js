@@ -65,6 +65,11 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'TutorialCtrl',
       templateUrl: 'templates/tutorial.html'
     })
+    .when('/suggest', {
+      authRequired: true,
+      controller: 'SuggestCtrl',
+      templateUrl: 'templates/suggest.html'
+    })
     .otherwise({
       redirectTo: '/fail'
     });

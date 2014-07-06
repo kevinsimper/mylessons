@@ -33,9 +33,24 @@ app.factory('User', ['$firebase', 'firebaseUrl', '$rootScope',
     return $firebase(new Firebase(firebaseUrl + 'users/'));
 }]);
 
-app.factory('Highscore', ['$firebase', 'firebaseUrl', '$rootScope',
+app.factory('Suggestion', ['$firebase', 'firebaseUrl', '$rootScope',
   function($firebase, firebaseUrl, $rootScope) {
-    return $firebase(new Firebase(firebaseUrl + 'highscore/'));
+    var fbRef = $firebase(new Firebase(firebaseUrl + 'suggestions/'));
+    return {
+      all: function() {
+        return fbRef;
+      },
+      add: function(name, link, desc, quiz, callback) {
+        fbRef.$add({
+          name: name,
+          link: link,
+          desc: desc,
+          quiz: quiz
+        }).then(function(ref){
+          callback();
+        });
+      }
+    };
 }]);
 
 app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',

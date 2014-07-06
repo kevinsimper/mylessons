@@ -23,7 +23,6 @@ var app = require('../modules/app')
           }
 
           Quiz.hasUserTakenQuiz($rootScope.auth.user.uid, $scope.id, function(result){
-            console.log(result);
             $scope.quizTaken = result;
           });
 

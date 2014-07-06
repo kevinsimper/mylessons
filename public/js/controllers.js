@@ -50,6 +50,25 @@ app.controller('AboutCtrl', ['$scope', function($scope){
   function($scope, $firebase) {
 }])
 
+.controller('SuggestCtrl',
+  ['$scope', '$firebase', 'Suggestion',
+  function($scope, $firebase, Suggestion) {
+    $scope.submitted = false;
+    $scope.suggest = {};
+
+    var name = $scope.suggest.name;
+    var link = $scope.suggest.link;
+    var desc = $scope.suggest.desc;
+    var quiz = $scope.suggest.quiz;
+
+    $scope.submitSuggestion = function() {
+      Suggestion.add(name, link, desc, quiz, function(){
+        $scope.submitted = true;
+      });
+    };
+
+}])
+
 .controller('NewLessonCtrl', ['$scope', '$routeParams', 'Lessons', '$location', function($scope, $routeParams, Lessons, $location){
   Lessons.all.$bind($scope, 'lessons');
 

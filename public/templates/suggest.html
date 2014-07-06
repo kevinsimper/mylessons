@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-2">
+			<h1>Suggest Content</h1>
+			<p>If you like to recommand content we would be very happy to hear from you. If we like what you suggest we may send something your way! :)</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<form ng-hide="submitted">
+				<div class="form-group">
+					<label for="link">Where can you find the content?</label>
+					<input type="text" class="form-control" ng-model="suggest.name">
+				</div>
+				<div class="form-group">
+					<label for="link">Where can you find the content?</label>
+					<input type="text" class="form-control" ng-model="suggest.link">
+				</div>
+				<div class="form-group">
+					<label>Why do you think it is great?</label>
+					<textarea class="form-control" rows="8" ng-model="suggest.desc"></textarea>
+				</div>
+				<div class="form-group">
+					<label>What do you think is the important part in the book? (for the quiz)</label>
+					<textarea class="form-control" rows="8" ng-model="suggest.quiz"></textarea>
+				</div>
+				<button class="btn btn-primary" ng-click="submitSuggestion()">Send my suggestion</button>
+			</form>
+			<div class="alert alert-success" ng-show="submitted">
+				Thanks for your suggestion
+			</div>
+		</div>
+	</div>
+</div>
