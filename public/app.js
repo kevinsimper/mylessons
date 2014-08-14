@@ -22,12 +22,13 @@ var app = require('./js/modules/app');
 
 app.value('firebaseUrl', localconfig.localFirebase);
 
-app.run(['$rootScope', '$location', 'LoginHandler', 'User', function($rootScope, $location, LoginHandler, User) {
+app.run(['$rootScope', '$location', 'LoginHandler', 'User', 'Admin', function($rootScope, $location, LoginHandler, User, Admin) {
   $rootScope.$on("$firebaseSimpleLogin:login", function(e, user) {
     var userData = User.$child(user.uid);
     userData.$on('loaded', function() {
       LoginHandler.user.data = userData;
 
+      Admin.isAdmin();
 
       userData.$update({
         name: LoginHandler.user.displayName,

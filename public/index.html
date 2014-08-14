@@ -42,6 +42,9 @@
           <li>
             <a href="#/suggest">Suggest Content</a>
           </li>
+          <li ng-show="auth.isAdmin">
+            <a href="#/admin">Admin</a>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-hide="auth.user">
           <li>

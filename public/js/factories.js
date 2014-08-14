@@ -13,6 +13,23 @@ app.factory('LoginHandler',
 
 }]);
 
+app.factory('Admin',
+  ['$firebase', 'firebaseUrl', '$rootScope', 'LoginHandler',
+  function($firebase, firebaseUrl, $rootScope, LoginHandler){
+    var admin = $firebase(new Firebase(firebaseUrl + 'admin'));
+
+    return {
+      isAdmin: function() {
+        admin.$on('loaded', function(){
+          console.log(admin, LoginHandler.user.uid)
+          if(admin[LoginHandler.user.uid]){
+            LoginHandler.isAdmin = true;
+          }
+        });
+      }
+    };
+}]);
+
 app.factory('Lessons', ['$firebase', 'firebaseUrl',
   function($firebase, firebaseUrl) {
     var lessens = $firebase(new Firebase(firebaseUrl + 'lessons'));

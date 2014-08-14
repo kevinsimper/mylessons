@@ -1,0 +1,46 @@
+<div class="container">
+	<h1>Admin</h1>
+
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Users</h3>
+			<table class="table table-striped">
+				<thead>
+					<th>Name</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="(id, user) in users">
+						<td>
+							<a ng-href="#/profile/{{id}}/">{{user.name}}</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<h3>Suggested Content</h3>
+			<table class="table table-striped suggestions">
+				<tbody>
+					<tr class="suggestion" ng-repeat="(id, suggestion) in suggestions">
+						<td>
+							<div class="actions" style="float: right;">
+								<button class="btn btn-xs btn-danger" ng-click="removeSuggestion(id, suggestion)">Delete</button>
+							</div>
+							<h4>{{suggestion.name}}</h4>
+							<div>
+								<a ng-href="{{suggestion.link}}">{{suggestion.link}}</a>
+							</div>
+							<div>
+								{{suggestion.desc}}
+							</div>
+							<div>
+								<h5>Quiz</h5>
+								{{suggestion.quiz}}
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</div>
+		</div>
+	</div>
+</div>

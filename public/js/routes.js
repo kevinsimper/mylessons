@@ -70,6 +70,11 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'SuggestCtrl',
       templateUrl: 'templates/suggest.html'
     })
+    .when('/admin', {
+      authRequired: true,
+      controller: 'AdminCtrl',
+      templateUrl: 'templates/admin/index.html'
+    })
     .otherwise({
       redirectTo: '/fail'
     });
