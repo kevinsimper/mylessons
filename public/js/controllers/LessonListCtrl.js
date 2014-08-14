@@ -7,9 +7,9 @@ var app = require('../modules/app')
   $scope.lessons = Lessons.all;
 
   $scope.toppicks = {
+    'the-value-of-design': Lessons.choose('the-value-of-design'),
     'what_is_design_thinking': Lessons.choose('what_is_design_thinking'),
-    'rotmanondesign': Lessons.choose('rotmanondesign'),
-    'the-value-of-design': Lessons.choose('the-value-of-design')
+    'the-deep-dive': Lessons.choose('the-deep-dive')
   };
 
   $scope.showType = 'blocks';
