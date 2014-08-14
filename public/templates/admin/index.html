@@ -27,6 +27,7 @@
 								<button class="btn btn-xs btn-danger" ng-click="removeSuggestion(id, suggestion)">Delete</button>
 							</div>
 							<h4>{{suggestion.name}}</h4>
+							<a ng-href="#/profile/{{suggestion.user.id}}">Added by {{suggestion.user.name}}</a>
 							<div>
 								<a ng-href="{{suggestion.link}}">{{suggestion.link}}</a>
 							</div>

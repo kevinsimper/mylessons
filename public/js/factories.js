@@ -72,7 +72,11 @@ app.factory('Suggestion', ['$firebase', 'firebaseUrl', '$rootScope',
           name: name,
           link: link,
           desc: desc,
-          quiz: quiz
+          quiz: quiz,
+          user: {
+            id: $rootScope.auth.user.uid,
+            name: $rootScope.auth.user.displayName
+          }
         };
         fbRef.$add(item).then(function(ref){
           callback();
