@@ -6,6 +6,12 @@ var app = require('../modules/app')
   $scope.levels = LessonDefaultValues.levels;
   $scope.lessons = Lessons.all;
 
+  $scope.toppicks = {
+    'what_is_design_thinking': Lessons.choose('what_is_design_thinking'),
+    'rotmanondesign': Lessons.choose('rotmanondesign'),
+    'the-value-of-design': Lessons.choose('the-value-of-design')
+  };
+
   $scope.showType = 'blocks';
 
   $scope.lessons.$on('loaded', function(){

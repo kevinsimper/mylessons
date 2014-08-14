@@ -1,6 +1,23 @@
 <div class="lessons-hero">
 </div>
 <div class="container">
+  <h1>Get started!</h1>
+  <div class="lessons">
+    <div ng-repeat="(slug, lesson) in toppicks" ng-click="goToLesson(slug, lesson)" ng-style="getStyles(lesson)" ng-show="showType == 'blocks'" class="lesson">
+      <div class="info">
+        <div><strong>{{shortenLessonname(lesson.name)}}</strong></div>
+        <div class="lessonDetails">
+          {{lesson.type}} - {{lesson.level}}
+          <span>- {{lesson.quiz.points}}p - {{lesson.time}}</span>
+          <span ng-show="lesson.quizTaken">
+            <span class="glyphicon glyphicon-ok" style="color: green;"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
   <div class="page-header">
     <h1>Lessons 
       <div style="float: right">
