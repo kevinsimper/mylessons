@@ -49,6 +49,17 @@ app.factory('User', ['$firebase', 'firebaseUrl', '$rootScope',
     return $firebase(new Firebase(firebaseUrl + 'users/'));
 }]);
 
+app.factory('Highscore', ['$firebase', 'firebaseUrl', '$rootScope',
+  function($firebase, firebaseUrl, $rootScope) {
+    var fbRef = $firebase(new Firebase(firebaseUrl + 'highscore/'));
+    return {
+      all: function() {
+        return fbRef;
+      }
+    };
+
+}]);
+
 app.factory('Suggestion', ['$firebase', 'firebaseUrl', '$rootScope',
   function($firebase, firebaseUrl, $rootScope) {
     var fbRef = $firebase(new Firebase(firebaseUrl + 'suggestions/'));

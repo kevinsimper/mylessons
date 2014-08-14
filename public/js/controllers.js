@@ -24,7 +24,7 @@ app.controller('AboutCtrl', ['$scope', function($scope){
 
 .controller('HighscoreCtrl', ['$scope', '$firebase', 'Highscore',
   function($scope, $firebase, Highscore){
-    Highscore.$bind($scope, "highscore");
+    $scope.highscore = Highscore.all();
 }])
 
 .controller('UserCtrl', ['$scope', '$firebase', 'User', '$rootScope', function($scope, $firebase, User, $rootScope){
