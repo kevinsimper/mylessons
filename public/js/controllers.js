@@ -56,12 +56,14 @@ app.controller('AboutCtrl', ['$scope', function($scope){
     $scope.submitted = false;
     $scope.suggest = {};
 
-    var name = $scope.suggest.name;
-    var link = $scope.suggest.link;
-    var desc = $scope.suggest.desc;
-    var quiz = $scope.suggest.quiz;
+    $scope.suggestions = Suggestion.all();
+
 
     $scope.submitSuggestion = function() {
+      var name = $scope.suggest.name;
+      var link = $scope.suggest.link;
+      var desc = $scope.suggest.desc;
+      var quiz = $scope.suggest.quiz;
       Suggestion.add(name, link, desc, quiz, function(){
         $scope.submitted = true;
       });
@@ -78,4 +80,17 @@ app.controller('AboutCtrl', ['$scope', function($scope){
     $location.path('/lessons/' + $scope.lesson.slug);
   };
 
-}]);
+}])
+
+.controller('AdminCtrl', ['$scope', 'User', 'Suggestion', function($scope, User, Suggestion){
+  $scope.users = User;
+  $scope.suggestions = Suggestion.all();
+
+  $scope.removeSuggestion = function(id, suggestion) {
+    var confirm = window.confirm('Are you sure you want to delete?');
+    if(confirm){
+      $scope.suggestions.$remove(id);
+    }
+  }
+
+}])

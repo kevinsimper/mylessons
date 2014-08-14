@@ -58,12 +58,13 @@ app.factory('Suggestion', ['$firebase', 'firebaseUrl', '$rootScope',
         return fbRef;
       },
       add: function(name, link, desc, quiz, callback) {
-        fbRef.$add({
+        var item = {
           name: name,
           link: link,
           desc: desc,
           quiz: quiz
-        }).then(function(ref){
+        };
+        fbRef.$add(item).then(function(ref){
           callback();
         });
       }
