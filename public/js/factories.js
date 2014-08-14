@@ -21,7 +21,6 @@ app.factory('Admin',
     return {
       isAdmin: function() {
         admin.$on('loaded', function(){
-          console.log(admin, LoginHandler.user.uid)
           if(admin[LoginHandler.user.uid]){
             LoginHandler.isAdmin = true;
           }
