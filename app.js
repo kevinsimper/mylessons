@@ -12,3 +12,9 @@ app.listen(port, function(){
 });
 
 var highscore_worker = fork('highscore.js');
+app.get('/workerstatus', function(req, res) {
+	highscore_worker.send({'task': 'status'});
+	highscore_worker.once('message', function(status) {
+		res.send(status);
+	});
+});

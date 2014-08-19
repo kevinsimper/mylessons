@@ -3,6 +3,10 @@ var localconfig = require('./localconfig');
 
 var rootRef = new Firebase(localconfig.localFirebase);
 var highscoreRef = rootRef.child('highscore');
+var lastUpdated = {
+  date: new Date(),
+  persons: 0
+};
 
 console.log('Starter HighScore worker')
 
@@ -35,5 +39,14 @@ rootRef.child('users').on('value', function(snapshot){
   });
   highscore = highscore.slice(0, 10);
   highscoreRef.set(highscore);
+  lastUpdated.date = new Date();
+  lastUpdated.persons = Object.keys(data).length;
   console.log('Highscore updated');
+});
+
+process.on('message', function(m) {
+  process.send({
+    'status': 'fine', 
+    'date': lastUpdated, 
+    'since': Date.now() / 1000 - Date.parse(lastUpdated.date) / 1000});
 });
