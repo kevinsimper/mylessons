@@ -14,7 +14,7 @@ rootRef.child('users').on('value', function(snapshot){
   var highscore = [];
   var data = snapshot.val();
   var refName = snapshot.name();
-  for(key in data){
+  for(var key in data){
     _person = data[key];
 
     var person = {
@@ -48,5 +48,6 @@ process.on('message', function(m) {
   process.send({
     'status': 'fine', 
     'date': lastUpdated, 
-    'since': Date.now() / 1000 - Date.parse(lastUpdated.date) / 1000});
+    'since': Date.now() / 1000 - Date.parse(lastUpdated.date) / 1000
+  });
 });

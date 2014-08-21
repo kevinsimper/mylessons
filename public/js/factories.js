@@ -1,4 +1,5 @@
 var app = require('./modules/app');
+var $ = require('jquery');
 
 app.factory('LoginHandler',
   ['$firebaseSimpleLogin', 'firebaseUrl', '$rootScope',
@@ -99,8 +100,19 @@ app.factory('Quiz', ['$firebase', 'firebaseUrl', '$rootScope',
         userPointsRef.$add({
           points: points,
           slug: lessonSlug,
-          name: lesson
+          name: lesson,
+          time: Date.now()
         });
+
+        userRef.$on('loaded', function(){
+          $.post('/events/quiz', {
+            profile: 'http://wiser.idadesign.dk/#/profile/' + user,
+            user: userRef.name,
+            link: 'http://wiser.idadesign.dk/#/lessons/' + lessonSlug,
+            quiz: lesson
+          });
+        })
+
         return userPointsRef;
       },
       hasUserTakenQuiz: function(user, lessonSlug, callback) {
